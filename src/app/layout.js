@@ -1,13 +1,21 @@
-import { Geist, Geist_Mono } from "next/font/google";
+import { Montserrat, Plus_Jakarta_Sans, Space_Grotesk } from "next/font/google";
 import "./globals.css";
+import Navbar from "@/components/layout/Navbar";
+import Map from "@/components/layout/Map";
+import Footer from "@/components/layout/Footer";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const monsterrat = Montserrat({
+  variable: "--font-monsterrat",
   subsets: ["latin"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const jakarta = Plus_Jakarta_Sans({
+  variable: "--font-jakarta",
+  subsets: ["latin"],
+});
+
+const space = Space_Grotesk({
+  variable: "--font-space",
   subsets: ["latin"],
 });
 
@@ -19,10 +27,11 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+      <body>
+        <Navbar />
         {children}
+        <Map />
+        <Footer />
       </body>
     </html>
   );
