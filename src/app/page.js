@@ -9,7 +9,7 @@ export default function Home() {
     <main className="pt-18 lg:pt-28">
       <Banner />
 
-      <section className=" flex items-center justify-center gap-10 px-24">
+      <section className=" flex items-center justify-center gap-10 px-24 mt-20">
         <Image
           src="/images/Group11.png"
           alt="Home"
