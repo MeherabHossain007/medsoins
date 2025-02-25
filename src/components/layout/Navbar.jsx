@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Button from "../ui/Button";
 import Link from "next/link";
-// import { Menu, X } from "lucide-react";
+import { BsFillCaretDownFill, BsList, BsX } from "react-icons/bs";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -23,10 +23,17 @@ export default function Navbar() {
           <Link href="#">Accueil</Link>
           <div className="relative">
             <button
-              className="flex items-center gap-1 focus:outline-none"
+              className="flex items-center gap-1 focus:outline-none cursor-pointer"
               onClick={() => setServiceOpen(!serviceOpen)}
             >
               Services
+              <span
+                className={`transition duration-300 ${
+                  serviceOpen ? "rotate-180" : "rotate-0"
+                }`}
+              >
+                <BsFillCaretDownFill />
+              </span>
             </button>
 
             {/* Submenu */}
@@ -54,10 +61,17 @@ export default function Navbar() {
           <Link href="#">Nos centres</Link>
           <div className="relative">
             <button
-              className="flex items-center gap-1 focus:outline-none"
+              className="flex items-center gap-1 focus:outline-none cursor-pointer"
               onClick={() => setAboutOpen(!aboutOpen)}
             >
               À propos
+              <span
+                className={`transition duration-300 ${
+                  aboutOpen ? "rotate-180" : "rotate-0"
+                }`}
+              >
+                <BsFillCaretDownFill />
+              </span>
             </button>
 
             {/* Submenu */}
@@ -94,8 +108,7 @@ export default function Navbar() {
           className="md:hidden text-gray-800 focus:outline-none"
           onClick={() => setIsOpen(!isOpen)}
         >
-          {/* {isOpen ? <X size={28} /> : <Menu size={28} />} */}
-          {isOpen ? "x" : "="}
+          {isOpen ? <BsX size={28} /> : <BsList size={28} />}
         </button>
       </div>
 
@@ -111,10 +124,17 @@ export default function Navbar() {
             className={`w-full duration-300 ${serviceOpen ? "mb-0" : "mb-4"}`}
           >
             <button
-              className="flex items-center  gap-1 w-full focus:outline-none"
+              className="flex justify-between items-center gap-1 w-full focus:outline-none"
               onClick={() => setServiceOpen(!serviceOpen)}
             >
               Services
+              <span
+                className={`transition duration-300 ${
+                  serviceOpen ? "rotate-180" : "rotate-0"
+                }`}
+              >
+                <BsFillCaretDownFill />
+              </span>
             </button>
             <div
               className={`overflow-hidden transition-all duration-300 ease-in-out ${
@@ -122,15 +142,41 @@ export default function Navbar() {
               }`}
             >
               <Link href="#" className="block px-4 py-2 hover:bg-gray-200">
-                Doctor
+                Je suis patient
               </Link>
               <Link href="#" className="block px-4 py-2 hover:bg-gray-200">
-                Patient
+                Je suis professionnel de santé
               </Link>
             </div>
           </div>
           <Link href="#">Nos centres</Link>
-          <Link href="#">À propos</Link>
+          <div className={`w-full duration-300 ${aboutOpen ? "mb-0" : "mb-4"}`}>
+            <button
+              className="flex justify-between items-center gap-1 w-full focus:outline-none"
+              onClick={() => setAboutOpen(!aboutOpen)}
+            >
+              À propos
+              <span
+                className={`transition duration-300 ${
+                  aboutOpen ? "rotate-180" : "rotate-0"
+                }`}
+              >
+                <BsFillCaretDownFill />
+              </span>
+            </button>
+            <div
+              className={`overflow-hidden transition-all duration-300 ease-in-out ${
+                aboutOpen ? "max-h-40 opacity-100" : "max-h-0 opacity-0"
+              }`}
+            >
+              <Link href="#" className="block px-4 py-2 hover:bg-gray-200">
+                Qui sommes-nous
+              </Link>
+              <Link href="#" className="block px-4 py-2 hover:bg-gray-200">
+                FAQ
+              </Link>
+            </div>
+          </div>
           <Button className="!py-3">Prendre rendez-vous</Button>
         </div>
       </div>

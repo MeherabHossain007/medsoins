@@ -1,5 +1,7 @@
 @import "tailwindcss";
-
+@plugin "daisyui" {
+  themes: false;
+}
 /* Tailwind Theme */
 @custom-variant dark (&:where(.dark, .dark *));
 @theme {
@@ -7,6 +9,7 @@
   --color-secondary: #3EA0F1;
   --font-jakarta: "Plus Jakarta Sans";
   --font-space: "Space Grotesk";
+  --font-montserrat: "Montserrat";
   --text-h1: clamp(1rem, 10vw + 3rem, 100rem);
   --text-h2: clamp(1rem, 5vw + 3rem, 100rem);
   --text-h3: clamp(1rem, 1vw + 0.4rem, 40rem);
