@@ -1,12 +1,27 @@
 import React from "react";
 
-function IconInput({svg, placeholder}) {
+function IconInput({
+  svg,
+  placeholder,
+  children,
+  className = "",
+  inputClassName = "",
+  ...props
+}) {
   return (
-      <div className="p-3 border border-gray-200 rounded-full">
-        <label className="input">
-          {svg}
-          <input type="text" class="grow" placeholder={placeholder} />
-        </label>
+    <div
+      className={`p-3 border border-gray-200 rounded-full bg-white ${className}`}
+    >
+      <label className="input flex items-center">
+        {svg}
+        <input
+          type="text"
+          className={`grow ml-2 ${inputClassName}`}
+          placeholder={placeholder}
+          {...props}
+        />
+        {children}
+      </label>
     </div>
   );
 }
