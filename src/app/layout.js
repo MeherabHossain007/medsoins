@@ -1,4 +1,4 @@
-import { Montserrat, Plus_Jakarta_Sans, Space_Grotesk } from "next/font/google";
+import { Montserrat, Plus_Jakarta_Sans, Space_Grotesk, Poppins } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Map from "@/components/layout/Map";
@@ -17,6 +17,12 @@ const jakarta = Plus_Jakarta_Sans({
 
 const space = Space_Grotesk({
   variable: "--font-space",
+  subsets: ["latin"],
+});
+
+const poppins = Poppins({
+  weight: ['300',"400", "500", "700"],
+  variable: "--font-poppins",
   subsets: ["latin"],
 });
 
