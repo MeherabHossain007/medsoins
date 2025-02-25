@@ -9,10 +9,11 @@ const monsterrat = Montserrat({
   subsets: ["latin"],
 });
 
-const jakarta = Plus_Jakarta_Sans({
-  variable: "--font-jakarta",
-  subsets: ["latin"],
-});
+const jakarta = Plus_Jakarta_Sans({ 
+  subsets: ['latin'],
+  style: ['italic', 'normal'],
+  variable: '--font-jakarta'
+})
 
 const space = Space_Grotesk({
   variable: "--font-space",

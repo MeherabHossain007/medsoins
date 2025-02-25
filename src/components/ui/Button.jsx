@@ -1,6 +1,6 @@
 import React from "react";
 
-const Button = ({ children, className, href, onClick }) => {
+const Button = ({ children, className, href, onClick, style, ...props }) => {
   return (
     <>
       {!!href ? (
@@ -8,14 +8,18 @@ const Button = ({ children, className, href, onClick }) => {
           href={href}
           onClick={onClick}
           target={target}
-          className={`block px-4 py-2.5 lg:px-8 lg:py-5 rounded-full bg-secondary text-white font-bold ${className}`}
+          style={style}
+          {...props}
+          className={`block px-4 py-2.5 lg:px-8 lg:py-3 rounded-full bg-secondary text-white font-bold ${className}`}
         >
           {children}
         </Link>
       ) : (
         <button
           onClick={onClick}
-          className={`px-4 py-2.5 lg:px-8 lg:py-5 rounded-full bg-secondary text-white font-bold ${className}`}
+          style={style}
+          {...props}
+          className={`px-4 py-2.5 lg:px-8 lg:py-3 rounded-full bg-secondary text-white font-bold ${className}`}
         >
           {children}
         </button>
