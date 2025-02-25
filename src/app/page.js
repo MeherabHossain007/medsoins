@@ -123,6 +123,16 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <section className="mt-20">
+        <Image
+        src={"/images/img.jpeg"}
+        alt={"Image"}
+        width={1920}
+        height={100}
+        className="object-cover w-full h-full"
+        />
+      </section>
     </main>
   );
 }
