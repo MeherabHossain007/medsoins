@@ -6,12 +6,12 @@ import Button from "../ui/Button";
 const Banner = () => {
   return (
     <>
-      <div className="w-full bg-[url('/images/image%2016.jpg')] bg-cover bg-center bg-no-repeat relative">
+      <div className="w-screen h-screen bg-[url('/images/image%2016.jpg')] bg-cover bg-center bg-no-repeat relative">
         {/* Gradient overlay */}
         <div className="absolute inset-0 bg-[linear-gradient(180deg,#AEE8E4_0%,rgba(174,232,228,0.27)_115.29%)]" />
 
         {/* Main Content Container */}
-        <div className="flex flex-col items-center justify-start p-4 sm:py-16 relative z-10 min-h-screen">
+        <div className="flex flex-col items-center justify-center lg:justify-start p-4 sm:py-16 relative z-10 min-h-screen">
           {/* Top Banner */}
           <div
             className="flex items-center justify-center w-full max-w-[90%] md:max-w-[524px] min-h-[34px] rounded-[50px] border border-[#E0B869] bg-white bg-opacity-50 backdrop-blur-[5px] mb-4 sm:mb-8 px-2 opacity-0 animate-fadeIn"
@@ -24,12 +24,12 @@ const Banner = () => {
 
           {/* Main Heading */}
           <h1
-            className="text-center w-full text-white font-jakarta text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold leading-tight tracking-[-1px] sm:tracking-[-1.329px] capitalize opacity-0 animate-fadeIn"
+            className="text-center w-full text-white font-jakarta text-4xl md:text-5xl lg:text-7xl font-bold leading-tight tracking-[-1px] sm:tracking-[-1.329px] capitalize opacity-0 animate-fadeIn"
             style={{ animationDelay: "0.5s" }}
           >
             Lorem ipsum
             <span className="relative ml-2 sm:ml-6 inline-block">
-              <div className="w-16 h-8 sm:w-24 sm:h-12 md:w-40 lg:w-60 md:h-16 rounded-[40px] overflow-hidden">
+              <div className="w-16 h-8 hidden md:block md:w-40 lg:w-60 md:h-16 rounded-[40px] overflow-hidden">
                 <Image
                   src="/images/Capsul.png"
                   alt="Small House"
@@ -43,7 +43,7 @@ const Banner = () => {
             <br />
             {/* Bottom Section */}
             <span className="flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-3 mt-2 sm:mt-4">
-              <div className="relative w-[150px] sm:w-[27%] max-w-[267px]">
+              <div className="relative hidden md:block w-[150px] sm:w-[27%] max-w-[267px]">
                 <Image
                   src="/images/Group 2468.png"
                   alt="Bubble Image"
@@ -56,7 +56,7 @@ const Banner = () => {
                   Lorem ipsum <br /> dolor sit amet.
                 </p>
               </div>
-              <span className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl">
+              <span className="text-4xl md:text-5xl lg:text-7xl">
                 adipiscing elit.
               </span>
             </span>
@@ -64,7 +64,7 @@ const Banner = () => {
 
           {/* Subheading */}
           <p
-            className="text-h4 my-5 w-full max-w-2xl text-center font-light font-montserrat text-lg opacity-0 animate-fadeIn"
+            className="text-sm my-5 w-full max-w-2xl text-center font-light font-montserrat md:text-lg opacity-0 animate-fadeIn"
             style={{ animationDelay: "0.7s" }}
           >
             Donec ultricies pulvinar orci ut mollis. Vestibulum aliquam neque et
