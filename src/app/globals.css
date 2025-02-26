@@ -10,7 +10,7 @@
   --font-jakarta: "Plus Jakarta Sans";
   --font-space: "Space Grotesk";
   --font-montserrat: "Montserrat";
-  --font-poppins: "poppins";
+  --font-poppins: "Poppins";
   --text-h1: clamp(1rem, 10vw + 3rem, 100rem);
   --text-h2: clamp(1rem, 5vw + 3rem, 100rem);
   --text-h3: clamp(1rem, 1vw + 0.4rem, 40rem);
