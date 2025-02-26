@@ -9,12 +9,13 @@ import IconInput from "@/components/ui/IconInput";
 
 export default function Home() {
   return (
-    <main className="pt-18 lg:pt-28">
+    <main className="pt-10 lg:pt-28">
       <Banner />
 
-      <div className="flex items-center justify-center gap-4 bg-[#FAFAFA] p-2 ">
+      {/* Search Bar Section */}
+      <div className="flex flex-wrap items-center justify-center gap-4 bg-[#FAFAFA] p-2">
         <IconInput
-          className="w-xs"
+          className="w-full sm:w-40 md:w-xs"
           svg={
             <svg
               width={20}
@@ -47,7 +48,7 @@ export default function Home() {
           }
           placeholder={"Votre ville"}
         />
-        <IconInput placeholder={"Rayon"} className="w-60">
+        <IconInput placeholder={"Rayon"} className="w-full sm:w-40 md:w-60">
           <select defaultValue="Pick a color" className="select text-bold">
             <option>100km</option>
             <option>Crimson</option>
@@ -55,26 +56,33 @@ export default function Home() {
             <option>Velvet</option>
           </select>
         </IconInput>
-        <button className=" bg-primary text-white p-5 w-72 rounded-full border-0">
+        <button className="bg-primary text-white p-5 w-full sm:w-48 md:w-72 rounded-full border-0">
           Trouver mon centre
         </button>
       </div>
 
-      <section className=" flex items-center justify-center gap-10 px-24 mt-20">
-        <Image
-          src="/images/Group11.png"
-          alt="Home"
-          width={588}
-          height={503}
-          className=" h-[45%] w-[45%]"
-        />
-        <div>
+      {/* Hero Section */}
+      <section className="flex flex-col md:flex-row items-center justify-center gap-6 px-4 md:px-24 mt-10 md:mt-20">
+        <div className="w-full md:w-1/2">
+          <Image
+            src="/images/Group11.png"
+            alt="Home"
+            width={588}
+            height={503}
+            className="w-full h-auto"
+          />
+        </div>
+        <div className="w-full md:w-1/2">
           <div>
-            <p className="text-6xl font-montserrat">Lorem ipsum</p>
-            <p className="text-6xl font-montserrat font-bold">Dolor sit amet</p>
-            <p className="text-6xl font-montserrat">adipiscing elit </p>
+            <p className="text-4xl md:text-6xl font-montserrat">Lorem ipsum</p>
+            <p className="text-4xl md:text-6xl font-montserrat font-bold">
+              Dolor sit amet
+            </p>
+            <p className="text-4xl md:text-6xl font-montserrat">
+              adipiscing elit
+            </p>
           </div>
-          <p className=" text-base font-montserrat font-light mt-7 mb-10">
+          <p className="text-base font-montserrat font-light mt-4 md:mt-7 mb-6">
             Lorem ipsum dolor sit amet, consectetur <br /> adipiscing elit.
           </p>
           <Button>
@@ -86,101 +94,103 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="mt-30 px-24 flex flex-col justify-center items-center gap-20">
+      {/* Home Cards Section */}
+      <section className="mt-10 md:mt-30 px-4 md:px-24 flex flex-col justify-center items-center gap-10">
         <div className="flex justify-center items-center">
-          <h1 className="text-6xl font-montserrat tracking-tight font-medium">
-            Lorem Ipsum Dolor Sit{" "}
+          <h1 className="text-3xl md:text-6xl font-montserrat tracking-tight font-medium">
+            Lorem Ipsum Dolor Sit
           </h1>
         </div>
-        <div className="grid grid-cols-3 gap-6 justify-items-center">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 justify-items-center">
           <HomeCard />
           <HomeCard />
           <HomeCard />
-          <div className="col-span-3 flex justify-center gap-6">
+          <div className="col-span-1 md:col-span-3 flex flex-col md:flex-row justify-center gap-6">
             <HomeCard />
             <HomeCard />
           </div>
         </div>
       </section>
 
-      <section className="mt-30 px-24 pt-20 pb-3 bg-[#FFD3B6] flex flex-col justify-center items-center gap-20">
+      {/* Team Section */}
+      <section className="mt-10 md:mt-30 px-4 md:px-24 pt-10 md:pt-20 pb-3 bg-[#FFD3B6] flex flex-col justify-center items-center gap-10">
         <div className="container mx-auto">
           <div className="text-left">
-            <h1 className="text-6xl font-jakarta">
+            <h1 className="text-3xl md:text-6xl font-jakarta">
               Notre Équipe De
-              <span className="text-black font-bold p-2 font-jakarta">
+              <span className="text-black font-bold p-1 md:p-2 font-jakarta">
                 Docteurs
               </span>
             </h1>
           </div>
-          <div className="flex mt-8 justify-between">
-            <div className="w-1/2">
+          <div className="flex flex-col md:flex-row mt-8 justify-between">
+            <div className="w-full md:w-1/2">
               <p className="text-base text-gray-700 font-poppins font-light">
                 Lorem Ipsum Dolor Sit Amet, Consectetur Adipisicing Elit. Donec
                 Orci Velit, Varius Sollicitudin Pharetra Eu, Consequat Ac
                 Mauris.
               </p>
-              <div className="grid grid-cols-2 grid-rows-3 gap-6 my-8">
+              <div className="grid grid-cols-2 grid-rows-3 gap-4 my-8">
                 <BulletCard
                   title={"ipsum dolor sit "}
-                  className={" bg-black w-6"}
+                  className={"bg-black w-6"}
                   description={
                     "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent ullamcorper ac quam at aliquam"
                   }
                 />
                 <BulletCard
                   title={"orem ipsum dolor"}
-                  className={" bg-black opacity-25 w-2"}
+                  className={"bg-black opacity-25 w-2"}
                   titleClass={"text-black opacity-25"}
                 />
                 <BulletCard
                   title={"Lorem ipsum dolor"}
-                  className={" bg-black opacity-25 w-2"}
+                  className={"bg-black opacity-25 w-2"}
                   titleClass={"text-black opacity-25"}
                 />
                 <BulletCard
                   title={"24 orem ipsum dolor sit"}
-                  className={" bg-black opacity-25 w-2"}
+                  className={"bg-black opacity-25 w-2"}
                   titleClass={"text-black opacity-25"}
                 />
                 <BulletCard
                   title={"Lorem ipsum dolor sit "}
-                  className={" bg-black opacity-25 w-2"}
+                  className={"bg-black opacity-25 w-2"}
                   titleClass={"text-black opacity-25"}
                 />
                 <BulletCard
                   title={"Lorem ipsum dolor sit "}
-                  className={" bg-black opacity-25 w-2"}
+                  className={"bg-black opacity-25 w-2"}
                   titleClass={"text-black opacity-25"}
                 />
               </div>
             </div>
 
-            <div className="flex justify-center items-center p-4">
-              <div className="relative px-20">
+            <div className="w-full md:w-1/2 flex justify-center items-center p-4">
+              <div className="relative px-4 md:px-20">
                 <div className="static">
                   <img
                     alt="A doctor sitting at a desk with medical equipment in the background"
-                    className="w-auto h-auto mx-auto"
+                    className="w-full h-auto mx-auto"
                     src="/images/Mask Group3.png"
                   />
 
                   {/* Top Left Bubble */}
-                  <div className="absolute top-10 right-90 bg-secondary text-white p-4 w-[280px] flex items-center space-x-4 shadow-lg">
+                  <div className="absolute top-4 md:top-10 right-4 md:right-90 bg-secondary text-white p-3 md:p-4 w-64 md:w-[280px] flex items-center space-x-2 md:space-x-4 shadow-lg">
                     <div className="bg-blue-300 p-2 flex items-center justify-center">
-                      <img src="/images/icon1.png" className=" h-full w-full" />
+                      <img src="/images/icon1.png" className="w-full h-full" />
                     </div>
-                    <p className="font-light font-montserrat">
+                    <p className="text-sm md:text-base font-light font-montserrat">
                       Lorem Ipsum Dolor Sit Amet, Consectetur Adipiscing Elit.
                     </p>
                   </div>
 
                   {/* Bottom Right Bubble */}
-                  <div className="absolute bottom-10 left-80 bg-secondary text-white p-4 flex items-center space-x-4 shadow-lg">
+                  <div className="absolute bottom-4 md:bottom-10 left-4 md:left-80 bg-secondary text-white p-3 md:p-4 flex items-center space-x-2 md:space-x-4 shadow-lg">
                     <div className="bg-blue-300 p-2 flex items-center justify-center">
                       <img src="/images/icon2.png" />
                     </div>
-                    <p className="font-light font-montserrat">
+                    <p className="text-sm md:text-base font-light font-montserrat">
                       Lorem Ipsum Dolor Sit Amet,
                     </p>
                   </div>
@@ -191,18 +201,19 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="mt-30 px-24">
+      {/* Final Section */}
+      <section className="mt-10 md:mt-30 px-4 md:px-24">
         <div className="flex flex-col justify-center items-center">
-          <h1 className="text-6xl text-center font-jakarta tracking-tight font-medium">
+          <h1 className="text-3xl md:text-6xl text-center font-jakarta tracking-tight font-medium">
             Lorem Ipsum Dolor <br />
-            <p className="font-bold pt-1">SitAmet</p>
+            <span className="font-bold pt-1">SitAmet</span>
           </h1>
           <Image
             src={"/images/Group 34.png"}
             alt="Group 34"
             width={1920}
             height={1080}
-            className="object-cover w-full h-full mt-20"
+            className="object-cover w-full h-auto mt-10 md:mt-20"
           />
         </div>
       </section>
