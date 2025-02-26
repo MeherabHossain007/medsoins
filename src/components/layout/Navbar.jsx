@@ -83,13 +83,13 @@ export default function Navbar() {
               }`}
             >
               <Link
-                href="#"
+                href="/about"
                 className="block rounded-t-2xl px-6 py-4 hover:bg-gray-100 text-nowrap text-center text-[#757575] font-semibold"
               >
                 Qui sommes-nous
               </Link>
               <Link
-                href="#"
+                href="/faq"
                 className="block rounded-b-2xl px-6 py-4 hover:bg-gray-100 text-nowrap text-center text-[#757575] font-semibold"
               >
                 FAQ

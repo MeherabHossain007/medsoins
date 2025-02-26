@@ -1,7 +1,7 @@
 export default function BulletCard({ title, description, className, titleClass }) {
   return (
     <div class=" flex gap-5">
-      <div className={`h-[98px] w-[10px] rounded-full ${className}`} />
+      <div className={`h-[98px] rounded-full ${className}`} />
       <div>
         <h2 className={`text-2xl font-bold font-montserrat ${titleClass}`}>{title}</h2>
         <p className="text-lg text-gray-700 font-poppins font-light">
