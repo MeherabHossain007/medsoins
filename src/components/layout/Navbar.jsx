@@ -109,7 +109,7 @@ export default function Navbar() {
 
           {/* Button */}
           <div className="hidden md:block">
-            <Button className="!py-3">Prendre rendez-vous</Button>
+            <Button href="/registration" className="!py-3">Prendre rendez-vous</Button>
           </div>
 
           {/* Hamburger Icon */}
