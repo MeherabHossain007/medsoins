@@ -5,7 +5,7 @@ import Image from "next/image";
 import InputField from "@/components/registration/InputField";
 import Section from "@/components/registration/Section";
 
-export default function JoinTeam() {
+export default function Registration() {
   const [formData, setFormData] = useState({
     nom: "",
     prenom: "",

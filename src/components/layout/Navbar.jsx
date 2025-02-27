@@ -57,7 +57,7 @@ export default function Navbar() {
                   Je suis patient
                 </Link>
                 <Link
-                  href="#"
+                  href="/doctor"
                   onClick={() => setServiceOpen(!serviceOpen)}
                   className="block rounded-b-2xl px-6 py-4 hover:bg-gray-100 text-nowrap text-center text-[#757575] font-semibold"
                 >

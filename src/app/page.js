@@ -62,7 +62,7 @@ export default function Home() {
       </div>
 
       {/* Hero Section */}
-      <section className="flex flex-col w-screen md:flex-row items-center justify-center gap-6 px-4 md:px-24 mt-10 md:mt-20">
+      <section className="flex flex-col w-full md:flex-row items-center justify-center gap-6 px-4 md:px-24 mt-10 md:mt-20">
         <div className="w-full md:w-1/2">
           <Image
             src="/images/Group11.png"
@@ -101,11 +101,13 @@ export default function Home() {
             Lorem Ipsum Dolor Sit
           </h1>
         </div>
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 justify-items-center">
+        <div className="w-full max-w-6xl grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 place-items-center">
           <HomeCard />
           <HomeCard />
-          <HomeCard />
-          <div className="col-span-1 lg:col-span-3 flex flex-col lg:flex-row justify-center gap-6">
+          <div className="md:col-span-2 lg:col-span-1 w-full">
+            <HomeCard className="w-full" />
+          </div>
+          <div className="w-full lg:w-3xl col-span-1 md:col-span-2 lg:col-span-3 grid grid-cols-1 md:grid-cols-2 gap-6 place-items-center">
             <HomeCard />
             <HomeCard />
           </div>
