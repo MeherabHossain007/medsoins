@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import InputField from "@/components/registration/InputField";
+import Section from "@/components/registration/Section";
 
 export default function JoinTeam() {
   const [formData, setFormData] = useState({
@@ -128,39 +130,5 @@ export default function JoinTeam() {
         <Section title="Collaborer Avec Le Réseau" />
       </div>
     </div>
-  );
-}
-
-// Reusable Input Field Component
-function InputField({ label, name, type = "text", placeholder, onChange }) {
-  return (
-    <div>
-      <fieldset>
-        <legend className="text-sm font-light">{label}</legend>
-        <input
-          type={type}
-          name={name}
-          placeholder={placeholder}
-          className="mt-1 block w-full p-3 border bg-white border-gray-300 rounded-md"
-          onChange={onChange}
-        />
-      </fieldset>
-    </div>
-  );
-}
-
-// Reusable Section Component
-function Section({ title }) {
-  return (
-    <section className="mb-8">
-      <h3 className="text-2xl md:text-4xl font-bold mb-5 text-center md:text-left text-gray-500">
-        {title}
-      </h3>
-      <p className="text-gray-700 font-light mb-10 text-center md:text-left">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque
-        purus enim, egestas suscipit consequat nec, blandit imperdiet nunc. Sed
-        varius ac magna ut volutpat.
-      </p>
-    </section>
   );
 }
