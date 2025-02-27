@@ -6,12 +6,12 @@ import Button from "../ui/Button";
 const Banner = () => {
   return (
     <>
-      <div className="w-screen h-screen bg-[url('/images/image%2016.jpg')] bg-cover bg-center bg-no-repeat relative">
+      <div className="w-screen bg-[url('/images/image%2016.jpg')] bg-cover bg-center bg-no-repeat relative">
         {/* Gradient overlay */}
         <div className="absolute inset-0 bg-[linear-gradient(180deg,#AEE8E4_0%,rgba(174,232,228,0.27)_115.29%)]" />
 
         {/* Main Content Container */}
-        <div className="flex flex-col items-center justify-center lg:justify-start p-4 sm:py-16 relative z-10 min-h-screen">
+        <div className="flex flex-col items-center justify-center lg:justify-start px-5 pt-10 pb-20  lg:pt-20 lg:pb-40 relative z-10">
           {/* Top Banner */}
           <div
             className="flex items-center justify-center w-full max-w-[90%] md:max-w-[524px] min-h-[34px] rounded-[50px] border border-[#E0B869] bg-white bg-opacity-50 backdrop-blur-[5px] mb-4 sm:mb-8 px-2 opacity-0 animate-fadeIn"

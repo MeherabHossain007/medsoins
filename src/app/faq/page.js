@@ -49,7 +49,7 @@ export default function FAQ() {
   return (
     <div className="pt-18 lg:pt-28">
       <Banner />
-      <div className="max-w-screen-lg mx-auto px-4 sm:px-6 lg:px-8 mt-10">
+      <div className="container mx-auto px-5 py-10 lg:py-20">
         {/* Title */}
         <h1 className="text-2xl md:text-3xl font-bold font-montserrat">
           Questions Fréquent
@@ -57,9 +57,9 @@ export default function FAQ() {
 
         {/* Search Section */}
         <div className="mt-5 mb-8">
-          <div className="flex items-center gap-2">
-            <FaLightbulb className="text-yellow-500 text-2xl" />
-            <p className="text-lg font-light">
+          <div className="flex items-start gap-2">
+            <FaLightbulb className="text-yellow-500 mt-1" size={40}/>
+            <p className="text-[#757575] text-lg lg:text-3xl font-light lg:max-w-[55ch]">
               Vous avez une question ? Trouvez ici les réponses les plus
               courantes à propos de nos services
             </p>
@@ -75,7 +75,7 @@ export default function FAQ() {
         </div>
 
         {/* Categories */}
-        <div className="flex flex-wrap gap-x-2 gap-y-4 mb-8">
+        <div className="flex flex-wrap gap-x-2 gap-y-4 my-8 justify-between">
           {categories.map((category, index) => (
             <button
               key={index}
@@ -88,7 +88,7 @@ export default function FAQ() {
         </div>
 
         {/* FAQ Section */}
-        <div className="space-y-4 mt-10">
+        <div className="space-y-4 mt-10 max-w-5xl mx-auto">
           {faqData.map((faq, index) => (
             <div
               key={index}
