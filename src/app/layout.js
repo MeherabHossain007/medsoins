@@ -3,6 +3,7 @@ import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Map from "@/components/layout/Map";
 import Footer from "@/components/layout/Footer";
+import MapSection from "@/components/layout/MapSection";
 
 const monsterrat = Montserrat({
   variable: "--font-monsterrat",
@@ -37,7 +38,7 @@ export default function RootLayout({ children }) {
       <body>
         <Navbar />
         {children}
-        <Map />
+        <MapSection/>
         <Footer />
       </body>
     </html>
