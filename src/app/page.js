@@ -48,7 +48,7 @@ export default function Home() {
       </section>
 
       {/* Home Cards Section */}
-      <section className="mt-10 md:mt-30 px-4 md:px-24 flex flex-col justify-center items-center gap-10">
+      <section className="mt-10 md:mt-30 px-4 md:px-8 lg:px-10 xl:px-24 flex flex-col justify-center items-center gap-10">
         <div className="flex justify-center items-center">
           <h1 className="text-3xl md:text-5xl lg:text-6xl font-montserrat tracking-tight text-center font-medium">
             Lorem Ipsum Dolor Sit
@@ -68,7 +68,7 @@ export default function Home() {
       </section>
 
       {/* Team Section */}
-      <section className="mt-10 md:mt-30 px-4 md:px-24 pt-10 md:pt-20 pb-3 bg-[#FFD3B6] flex flex-col justify-center items-center gap-10">
+      <section className="mt-10 md:mt-30 px-4 md:px-8 lg:px-10 xl:px-24 pt-10 md:pt-20 pb-3 bg-[#FFD3B6] flex flex-col justify-center items-center gap-10">
         <div className="container mx-auto">
           <div className="text-left">
             <h1 className="text-3xl md:text-6xl font-jakarta">
@@ -121,8 +121,8 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="w-full lg:w-1/2 flex justify-center items-center p-4">
-              <div className="relative px-4 lg:px-20">
+            <div className="w-full lg:w-1/2 flex justify-center items-center p-2">
+              <div className="relative px-4 lg:px-auto xl:px-20">
                 <div className="static">
                   <img
                     alt="A doctor sitting at a desk with medical equipment in the background"
@@ -131,7 +131,7 @@ export default function Home() {
                   />
 
                   {/* Top Left Bubble */}
-                  <div className="absolute top-4 md:top-10 md:right-70 lg:top-10 right-4 lg:right-90 bg-secondary text-white p-3 md:p-4 w-64 md:w-[280px] flex items-center space-x-2 md:space-x-4 shadow-lg">
+                  <div className="absolute top-4 md:top-10 md:right-70 lg:top-10 right-4 lg:right-80 bg-secondary text-white p-3 md:p-4 w-64 md:w-[280px] flex items-center space-x-2 md:space-x-4 shadow-lg">
                     <div className="bg-blue-300 p-2 flex items-center justify-center">
                       <img src="/images/icon1.png" className="w-full h-full" />
                     </div>
@@ -141,7 +141,7 @@ export default function Home() {
                   </div>
 
                   {/* Bottom Right Bubble */}
-                  <div className="absolute bottom-4 md:bottom-10 md:left-70 lg:bottom-10 left-4 lg:left-80 bg-secondary text-white p-3 md:p-4 flex items-center space-x-2 md:space-x-4 shadow-lg">
+                  <div className="absolute bottom-4 md:bottom-10 md:left-50 lg:bottom-10 left-4 lg:left-70 bg-secondary text-white p-3 md:p-4 flex items-center space-x-2 md:space-x-4 shadow-lg">
                     <div className="bg-blue-300 p-2 flex items-center justify-center">
                       <img src="/images/icon2.png" />
                     </div>

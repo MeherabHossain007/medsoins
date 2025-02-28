@@ -9,11 +9,11 @@ export default function BulletCard({
       <div className={`h-[98px] rounded-full ${className}`} />
       <div>
         <h2
-          className={`text-lg lg:text-2xl font-bold font-montserrat ${titleClass}`}
+          className={`text-lg lg:text-xl xl:text-2xl font-bold font-montserrat ${titleClass}`}
         >
           {title}
         </h2>
-        <p className="text-sm lg:text-lg text-gray-700 font-poppins font-light">
+        <p className="text-sm lg:text-base xl:text-lg text-gray-700 font-poppins font-light">
           {description}
         </p>
       </div>

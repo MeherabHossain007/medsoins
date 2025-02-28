@@ -12,7 +12,7 @@ const SearchBar = () => {
   const [isSuggestion, setIsSuggestion] = useState(false);
   const [suggestions, setSuggestions] = useState([]);
   const debounceRef = useRef(null);
-  const searchBarRef = useRef(null); // Ref for the search bar form
+  const searchBarRef = useRef(null);
   const staticCenters = [
     { name: "Centre de soins de santé", distance: "100 km" },
     { name: "Centre médical général", distance: "75 km" },
@@ -75,16 +75,16 @@ const SearchBar = () => {
         onBlur={handleBlur}
         className={`lg:${position} flex flex-col md:inline-flex items-center justify-center gap-4 ${bgColor} px-4 py-2 rounded-lg`}
       >
-        <div className=" flex flex-wrap gap-4">
+        <div className=" flex flex-wrap items-center justify-center gap-4">
           <IconInput
-            className="w-full sm:w-40 md:w-lg"
+            className="w-full md:w-sm lg:w-md xl:w-lg"
             onChange={(e) => {
               const value = e.target.value;
               setSearchValue(value);
-              fetchSuggestions(value); // Fetch suggestions on input change
+              fetchSuggestions(value);
             }}
             onFocus={() => {
-              setIsFocused(true); // Show suggestion if there are any, on focus
+              setIsFocused(true);
               setPosition("absolute inset-x-5 top-[-60]");
               setBGColor("bg-white shadow-lg pt-10");
             }}
