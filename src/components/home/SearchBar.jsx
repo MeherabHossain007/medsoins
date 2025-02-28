@@ -2,25 +2,82 @@
 import React, { useState, useEffect, useRef } from "react";
 import IconInput from "@/components/ui/IconInput";
 import LocationCard from "@/components/home/LocationCard";
+import { useRouter } from "next/navigation";
 
-// Search bar component with expanding functionality
-const SearchBar = () => {
+// Search bar component with expanding functionality and animations
+const SearchBar = ({
+  initialLocation = "",
+  initialRadius = "100km",
+  onSearchResults = null,
+  resetAfterSearch = false,
+}) => {
+  const router = useRouter();
   const [isFocused, setIsFocused] = useState(false);
   const [position, setPosition] = useState("absolute");
   const [bgColor, setBGColor] = useState("bg-[#FAFAFA]");
-  const [searchValue, setSearchValue] = useState("");
+  const [searchValue, setSearchValue] = useState(initialLocation);
+  const [radius, setRadius] = useState(initialRadius);
   const [isSuggestion, setIsSuggestion] = useState(false);
   const [suggestions, setSuggestions] = useState([]);
+  const [isAnimating, setIsAnimating] = useState(false);
   const debounceRef = useRef(null);
   const searchBarRef = useRef(null);
+
+  // Static centers data (would be replaced with API call in production)
   const staticCenters = [
-    { name: "Centre de soins de santé", distance: "100 km" },
-    { name: "Centre médical général", distance: "75 km" },
-    { name: "Clinique de bien-être", distance: "50 km" },
-    { name: "Hôpital régional", distance: "120 km" },
-    { name: "Nouveau Centre médical", distance: "60 km" },
-    { name: "Centre de bien-être avancé", distance: "40 km" },
+    {
+      id: 1,
+      name: "Centre de soins de santé",
+      distance: "100 km",
+      location: "Paris",
+    },
+    {
+      id: 2,
+      name: "Centre médical général",
+      distance: "75 km",
+      location: "Lyon",
+    },
+    {
+      id: 3,
+      name: "Clinique de bien-être",
+      distance: "50 km",
+      location: "Bordeaux",
+    },
+    {
+      id: 4,
+      name: "Hôpital régional",
+      distance: "120 km",
+      location: "Marseille",
+    },
+    {
+      id: 5,
+      name: "Nouveau Centre médical",
+      distance: "60 km",
+      location: "Lille",
+    },
+    {
+      id: 6,
+      name: "Centre de bien-être avancé",
+      distance: "40 km",
+      location: "Nice",
+    },
   ];
+
+  // Function to reset the search bar state with animation
+  const resetSearchBarState = () => {
+    setIsAnimating(true);
+
+    // First animate the background change
+    setBGColor("bg-[#FAFAFA] transition-colors duration-300");
+
+    // After a slight delay, change position and other states
+    setTimeout(() => {
+      setIsFocused(false);
+      setIsSuggestion(false);
+      setPosition("absolute");
+      setIsAnimating(false);
+    }, 300);
+  };
 
   // Function to fetch suggestions (simulated with static data)
   const fetchSuggestions = (query) => {
@@ -32,12 +89,13 @@ const SearchBar = () => {
       if (!query.trim()) {
         setSuggestions([]);
         setIsSuggestion(false);
-        setIsFocused(true);
         return;
       }
 
-      const filteredSuggestions = staticCenters.filter((center) =>
-        center.name.toLowerCase().includes(query.toLowerCase())
+      const filteredSuggestions = staticCenters.filter(
+        (center) =>
+          center.location.toLowerCase().includes(query.toLowerCase()) ||
+          center.name.toLowerCase().includes(query.toLowerCase())
       );
 
       setSuggestions(filteredSuggestions);
@@ -46,48 +104,108 @@ const SearchBar = () => {
   };
 
   useEffect(() => {
+    // Initialize search value from props if available
+    if (initialLocation) {
+      setSearchValue(initialLocation);
+    }
+
     return () => {
       if (debounceRef.current) clearTimeout(debounceRef.current);
     };
-  }, []);
+  }, [initialLocation]);
 
   const handleBlur = (e) => {
     if (
       searchBarRef.current &&
       !searchBarRef.current.contains(e.relatedTarget)
     ) {
-      setIsFocused(false);
-      setIsSuggestion(false);
-      setPosition("absolute");
-      setBGColor("bg-[#FAFAFA]");
+      resetSearchBarState();
     }
   };
 
-  // Mock function to handle search
-  const handleSearch = () => {
-    setIsSearched(true);
+  // Select suggestion handler with animation
+  const handleSelectSuggestion = (center) => {
+    setSearchValue(center.location);
+
+    // Animate the suggestion disappearing
+    const fadeOutSuggestions = () => {
+      setIsSuggestion(false);
+    };
+
+    setTimeout(fadeOutSuggestions, 150);
+  };
+
+  // Function to handle search
+  const handleSearch = (e) => {
+    e.preventDefault();
+
+    // Filter centers based on search criteria
+    const results = staticCenters.filter(
+      (center) =>
+        center.location.toLowerCase().includes(searchValue.toLowerCase()) ||
+        center.name.toLowerCase().includes(searchValue.toLowerCase())
+    );
+
+    // Reset the search bar state if resetAfterSearch is true
+    if (resetAfterSearch) {
+      resetSearchBarState();
+
+      // Remove focus from input elements
+      if (document.activeElement instanceof HTMLElement) {
+        document.activeElement.blur();
+      }
+    }
+
+    // If we have a callback for in-page results, use it
+    if (onSearchResults) {
+      onSearchResults(results, searchValue, radius);
+      return;
+    }
+
+    // Otherwise, navigate to search page with query params
+    const queryParams = new URLSearchParams({
+      location: searchValue,
+      radius: radius,
+    }).toString();
+
+    router.push(`/search?${queryParams}`);
+  };
+
+  // Handle focus with animation
+  const handleFocus = () => {
+    setIsAnimating(true);
+    setIsFocused(true);
+
+    // First update the position
+    setPosition("absolute inset-x-5 top-[-60]");
+
+    // Then animate the background color change
+    setBGColor(
+      "bg-white shadow-lg pt-10 transition-all duration-300 ease-in-out"
+    );
+
+    // Mark animation as complete after transition
+    setTimeout(() => setIsAnimating(false), 300);
   };
 
   return (
-    <div className="relative flex fle-col w-full h-auto justify-center items-center">
+    <div className="relative flex flex-col w-full h-auto justify-center items-center">
       <form
         ref={searchBarRef}
+        onSubmit={handleSearch}
         onBlur={handleBlur}
-        className={`lg:${position} flex flex-col md:inline-flex items-center justify-center gap-4 ${bgColor} px-4 py-2 rounded-lg`}
+        className={`lg:${position} flex flex-col md:inline-flex items-center justify-center gap-4 ${bgColor} px-4 py-2 rounded-lg transition-all duration-300 ease-in-out`}
       >
-        <div className=" flex flex-wrap items-center justify-center gap-4">
+        <div className="flex flex-wrap items-center justify-center gap-4">
           <IconInput
-            className="w-full md:w-sm lg:w-md xl:w-lg"
+            className="w-full md:w-sm lg:w-md xl:w-lg transition-all duration-300"
+            value={searchValue}
             onChange={(e) => {
               const value = e.target.value;
               setSearchValue(value);
               fetchSuggestions(value);
             }}
-            onFocus={() => {
-              setIsFocused(true);
-              setPosition("absolute inset-x-5 top-[-60]");
-              setBGColor("bg-white shadow-lg pt-10");
-            }}
+            onFocus={handleFocus}
             svg={
               <svg
                 width={20}
@@ -123,50 +241,137 @@ const SearchBar = () => {
             }
             placeholder={"Votre ville"}
           />
-          <IconInput placeholder={"Rayon"} className="w-full sm:w-40 md:w-60">
-            <select defaultValue="Pick a color" className="select text-bold">
-              <option>100km</option>
-              <option>Crimson</option>
-              <option>Amber</option>
-              <option>Velvet</option>
+          <IconInput
+            className="w-full sm:w-40 md:w-60 transition-all duration-300"
+            placeholder={"Rayon"}
+            onChange={(e) => setRadius(e.target.value)}
+          >
+            <select
+              className="select text-bold"
+              value={radius}
+              onChange={(e) => setRadius(e.target.value)}
+            >
+              <option value="25km">25km</option>
+              <option value="50km">50km</option>
+              <option value="75km">75km</option>
+              <option value="100km">100km</option>
+              <option value="150km">150km</option>
             </select>
           </IconInput>
           <button
-            onClick={handleSearch}
-            className="bg-primary text-white px-8 py-5 sm:px-5 md:px-6 rounded-full border-0"
+            type="submit"
+            className="bg-primary text-white px-8 py-5 sm:px-5 md:px-6 rounded-full border-0 hover:bg-primary/90 transition-all duration-200 transform hover:scale-105 active:scale-95"
           >
             Trouver mon centre
           </button>
         </div>
-        {isFocused && !isSuggestion && (
-          <div className="py-36 text-center">
+        {isFocused && !isSuggestion && searchValue.trim() === "" && (
+          <div className="py-36 text-center opacity-0 animate-fadeIn">
             <p className="text-xl text-gray-600 mb-1">
               Pas de centre disponible encore ici.
             </p>
             <p className="text-xl text-gray-600 mb-6">
               Souhaitez-vous ouvrir un centre ?
             </p>
-            <a href="#" className="text-blue-500 text-xl">
+            <a
+              href="#"
+              className="text-blue-500 text-xl hover:underline transition-all duration-200"
+            >
               Ouvrir un centre
             </a>
           </div>
         )}
         {isSuggestion && searchValue && (
-          <div className="w-full mx-auto mt-8 mb-10 bg-gray-100">
+          <div className="w-full mx-auto mt-8 mb-10 bg-gray-100 rounded-md overflow-hidden animate-slideDown">
             {suggestions.map((center, index) => (
-              <LocationCard
+              <div
                 key={index}
-                name={center.name}
-                distance={center.distance}
-                className="suggestion-item" // Add class to suggestion items
-              />
+                onClick={() => handleSelectSuggestion(center)}
+                className={`transform transition-transform duration-200 ease-in-out hover:scale-[1.01] ${
+                  index % 2 === 0
+                    ? "animate-slideInLeft"
+                    : "animate-slideInRight"
+                }`}
+                style={{ animationDelay: `${index * 50}ms` }}
+              >
+                <LocationCard
+                  name={center.name}
+                  distance={center.distance}
+                  className="suggestion-item cursor-pointer hover:bg-gray-200 transition-colors duration-200"
+                />
+              </div>
             ))}
             {suggestions.length === 0 && (
-              <div className="text-center py-4">No suggestions found.</div>
+              <div className="text-center py-4 animate-fadeIn">
+                No suggestions found.
+              </div>
             )}
           </div>
         )}
       </form>
+
+      {/* Add animation styles */}
+      <style jsx>{`
+        @keyframes fadeIn {
+          from {
+            opacity: 0;
+          }
+          to {
+            opacity: 1;
+          }
+        }
+
+        @keyframes slideDown {
+          from {
+            max-height: 0;
+            opacity: 0;
+            transform: translateY(-10px);
+          }
+          to {
+            max-height: 1000px;
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        @keyframes slideInLeft {
+          from {
+            opacity: 0;
+            transform: translateX(-20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateX(0);
+          }
+        }
+
+        @keyframes slideInRight {
+          from {
+            opacity: 0;
+            transform: translateX(20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateX(0);
+          }
+        }
+
+        .animate-fadeIn {
+          animation: fadeIn 0.3s ease-in-out forwards;
+        }
+
+        .animate-slideDown {
+          animation: slideDown 0.3s ease-out forwards;
+        }
+
+        .animate-slideInLeft {
+          animation: slideInLeft 0.3s ease-out forwards;
+        }
+
+        .animate-slideInRight {
+          animation: slideInRight 0.3s ease-out forwards;
+        }
+      `}</style>
     </div>
   );
 };
