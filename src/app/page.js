@@ -1,68 +1,21 @@
 /* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable @next/next/no-img-element */
+"use client";
 import Banner from "@/components/layout/Banner";
 import Image from "next/image";
 import Button from "@/components/ui/Button";
 import HomeCard from "@/components/home/HomeCard";
 import BulletCard from "@/components/home/BulletCard";
-import IconInput from "@/components/ui/IconInput";
+import SearchBar from "@/components/home/SearchBar";
 
 export default function Home() {
   return (
     <main className="pt-10 lg:pt-28 overflow-hidden">
       <Banner />
-
-      {/* Search Bar Section */}
-      <div className="flex flex-wrap items-center justify-center gap-4 bg-[#FAFAFA] p-2">
-        <IconInput
-          className="w-full sm:w-40 md:w-xs"
-          svg={
-            <svg
-              width={20}
-              height={24}
-              viewBox="0 0 20 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              role="img"
-              aria-label="Descriptive icon name"
-            >
-              <rect width="19.19" height="24" fill="url(#pattern0_1_2090)" />
-              <defs>
-                <pattern
-                  id="pattern0_1_2090"
-                  patternContentUnits="objectBoundingBox"
-                  width="1"
-                  height="1"
-                >
-                  <use href="#image0_1_2090" transform="scale(0.03125 0.025)" />
-                </pattern>
-                <image
-                  id="image0_1_2090"
-                  width="32"
-                  height="40"
-                  preserveAspectRatio="none"
-                  href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAoCAMAAACo9wirAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAAzUExURUdwTFRjiVRkiVRjilNiiVNiiFRiiVdnjVlqjlRjiVRjiVVljFVkilRiiVRiiVVkilNiiGumQuwAAAAQdFJOUwDEU1ya5fcVDHTSKUCtimbvmHdwAAABTElEQVQ4y4VU3RqFIAjL1BR/qvd/2gOCaWkdb0o3xoZ9LUu3XNIAOrlluhyoU5aCkeNhO7u1gb/j0XJp3vfMQjb2+ErlQYuw04FE1g6nCt1XaFK8GBHrQ3z0RJFNzjyygx9cI8PyKTRHfgVYffMNxRI24P7OlKibYbMaXx0LhD5qixhYQomAIzwYQxGtEwmF57gvW4OKhamxkSklBUqFhv4uK6V5cYriiXZZhhVqxCBDylSDHncJayrBSMCdnn8Jf1skAWYmA5kk4D0mETHLMR/UwRMAGcQ4asVe6bLS7LKSXBY1z8t43ZSBg8ezStwWCpzxmosdvyjbJkf+9ydhr1lkMs8m1KD7zlVPr6LqYz9WkKJpWzP2xHk2o2iQ77tfVHTw63GXW9rgmEF4nvxAvGIG4cpPfzHEAHjFReMDr4x3HBnoNH/g9HGvj4MfadEYaJxoDLcAAAAASUVORK5CYII="
-                />
-              </defs>
-            </svg>
-          }
-          placeholder={"Votre ville"}
-        />
-        <IconInput placeholder={"Rayon"} className="w-full sm:w-40 md:w-60">
-          <select defaultValue="Pick a color" className="select text-bold">
-            <option>100km</option>
-            <option>Crimson</option>
-            <option>Amber</option>
-            <option>Velvet</option>
-          </select>
-        </IconInput>
-        <button className="bg-primary text-white p-5 w-full sm:w-48 md:w-72 rounded-full border-0">
-          Trouver mon centre
-        </button>
-      </div>
+      <SearchBar />
 
       {/* Hero Section */}
-      <section className="flex flex-col w-full md:flex-row items-center justify-center gap-6 px-4 md:px-24 mt-10 md:mt-20">
+      <section className="flex flex-col w-full md:flex-row items-center justify-center gap-6 px-4 md:px-24 mt-10 md:mt-30">
         <div className="w-full md:w-1/2">
           <Image
             src="/images/Group11.png"
