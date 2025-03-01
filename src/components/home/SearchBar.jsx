@@ -168,7 +168,7 @@ const SearchBar = ({
       radius: radius,
     }).toString();
 
-    router.push(`/search?${queryParams}`);
+    router.push(`/centers?${queryParams}`);
   };
 
   // Handle focus with animation
@@ -177,7 +177,7 @@ const SearchBar = ({
     setIsFocused(true);
 
     // First update the position
-    setPosition("absolute inset-x-5 top-[-60]");
+    setPosition("absolute top-[-60]");
 
     // Then animate the background color change
     setBGColor(
@@ -194,7 +194,7 @@ const SearchBar = ({
         ref={searchBarRef}
         onSubmit={handleSearch}
         onBlur={handleBlur}
-        className={` lg:${position} lg:absolute  flex flex-col md:inline-flex items-center justify-center gap-4 ${bgColor} px-4 py-2 rounded-lg transition-all duration-300 ease-in-out`}
+        className={` lg:${position} lg:absolute  flex flex-col md:inline-flex items-center justify-center gap-4 ${bgColor} px-8 py-6 rounded-lg transition-all duration-300 ease-in-out`}
       >
         <div className="flex flex-wrap items-center justify-center gap-4">
           <IconInput

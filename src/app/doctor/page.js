@@ -2,8 +2,58 @@
 import Banner from "@/components/layout/Banner";
 import Image from "next/image";
 import ServiceCard from "@/components/doctor/ServiceCard";
+import CentersMapDisplay from "@/components/layout/Map";
+
 
 export default function Doctor() {
+      const healthCenters = [
+        {
+          id: 1,
+          name: "Centre Médical Rennes",
+          type: "healthcare",
+          latitude: 48.117266,
+          longitude: -1.677793,
+          address: "45 Rue de Rennes, 35000 Rennes",
+          phone: "+33 2 99 45 67 89",
+        },
+        {
+          id: 2,
+          name: "Hôpital Universitaire Strasbourg",
+          type: "hospital",
+          latitude: 48.584614,
+          longitude: 7.7507,
+          address: "1 Place de l'Hôpital, 67000 Strasbourg",
+          phone: "+33 3 88 11 67 68",
+        },
+        {
+          id: 3,
+          name: "Clinique Bordeaux",
+          type: "clinic",
+          latitude: 44.837789,
+          longitude: -0.57918,
+          address: "112 Cours d'Albret, 33000 Bordeaux",
+          phone: "+33 5 56 79 56 79",
+        },
+        {
+          id: 4,
+          name: "Centre Wellness Alpes",
+          type: "wellness",
+          latitude: 45.899247,
+          longitude: 6.129384,
+          address: "24 Rue des Alpes, 74000 Annecy",
+          phone: "+33 4 50 45 67 89",
+        },
+        {
+          id: 5,
+          name: "Centre de Santé Paris",
+          type: "healthcare",
+          latitude: 48.856614,
+          longitude: 2.3522219,
+          address: "75 Avenue des Champs-Élysées, 75008 Paris",
+          phone: "+33 1 45 67 89 10",
+        },
+      ];
+      
   return (
     <div className="font-montserrat pt-16 lg:pt-24 h-full">
       <Banner />
@@ -47,12 +97,11 @@ export default function Doctor() {
           <div className="flex flex-col gap-4 lg:col-span-2">
             {/* Main image */}
             <div className="w-full flex justify-center lg:justify-start">
-              <Image
-                src="/images/rectangle-6200.png"
-                alt="Map"
-                width={1000}
-                height={1000}
-                className="w-full h-auto rounded-lg"
+              <CentersMapDisplay
+                centers={healthCenters}
+                height="250px"
+                initialView={[46.603354, 2.888334]}
+                zoom={6}
               />
             </div>
 

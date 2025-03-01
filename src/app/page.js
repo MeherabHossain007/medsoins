@@ -16,7 +16,7 @@ export default function Home() {
       <SearchBar />
 
       {/* Hero Section */}
-      <section className="flex flex-col w-full md:flex-row items-center justify-center gap-6 px-4 md:px-24 mt-10 md:mt-30">
+      <section className="flex flex-col w-full container mx-auto md:flex-row items-center justify-center gap-6 px-4 lg:px-24 mt-10 lg:mt-30">
         <div className="w-full md:w-1/2">
           <Image
             src="/images/Group11.png"
@@ -158,7 +158,7 @@ export default function Home() {
       </section>
 
       {/* Final Section */}
-      <section className="mt-10 md:mt-30 px-4 md:px-24">
+      <section className="container mx-auto mt-10 md:mt-30 px-4 md:px-24">
         <div className="flex flex-col justify-center items-center">
           <h1 className="text-3xl md:text-6xl text-center font-jakarta tracking-tight font-medium">
             Lorem Ipsum Dolor <br />

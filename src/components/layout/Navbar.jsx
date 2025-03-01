@@ -65,7 +65,7 @@ export default function Navbar() {
                 </Link>
               </div>
             </div>
-            <Link href="#">Nos centres</Link>
+            <Link href="/centers">Nos centres</Link>
             <div className="relative">
               <button
                 className="flex items-center gap-1 focus:outline-none cursor-pointer"
@@ -159,7 +159,7 @@ export default function Navbar() {
               </Link>
             </div>
           </div>
-          <Link href="#">Nos centres</Link>
+          <Link href="/centers">Nos centres</Link>
           <div className={`w-full duration-300 ${aboutOpen ? "mb-0" : "mb-4"}`}>
             <button
               className="flex justify-between items-center gap-1 w-full focus:outline-none"
