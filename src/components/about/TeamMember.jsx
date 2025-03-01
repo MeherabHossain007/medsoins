@@ -1,3 +1,4 @@
+"use client";
 const TeamMember = ({ imgSrc, name, specialty }) => (
   <div className="text-center">
     <img

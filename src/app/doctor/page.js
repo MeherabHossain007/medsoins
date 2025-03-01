@@ -1,3 +1,4 @@
+"use client";
 import Banner from "@/components/layout/Banner";
 import Image from "next/image";
 import ServiceCard from "@/components/doctor/ServiceCard";

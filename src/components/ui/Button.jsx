@@ -1,7 +1,16 @@
+"use client";
 import React from "react";
 import Link from "next/link";
 
-const Button = ({ children, className, href, onClick, style, target, ...props }) => {
+const Button = ({
+  children,
+  className,
+  href,
+  onClick,
+  style,
+  target,
+  ...props
+}) => {
   return (
     <>
       {!!href ? (

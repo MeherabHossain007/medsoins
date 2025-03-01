@@ -1,5 +1,6 @@
+"use client";
 import React from "react";
-import CentersMap from '@/components/layout/Map';
+import CentersMap from "@/components/layout/Map";
 
 const MapSection = () => {
   // Sample data for the map markers

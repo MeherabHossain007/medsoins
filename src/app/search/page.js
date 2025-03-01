@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 "use client";
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import Banner from "@/components/layout/Banner";
 import SearchBar from "@/components/home/SearchBar";
@@ -98,75 +98,77 @@ export default function SearchPage() {
   };
 
   return (
-    <div className="pt-18 lg:pt-28">
-      <Banner />
+    <Suspense>
+      <div className="pt-18 lg:pt-28">
+        <Banner />
 
-      <div ref={searchBarRef} className="search-bar-container">
-        {/* Pass the current search parameters to SearchBar */}
-        <SearchBar
-          initialLocation={searchLocation}
-          initialRadius={searchRadius}
-          onSearchResults={handleSearchResults}
-          resetAfterSearch={true}
-        />
-      </div>
-
-      <div className="container mx-auto px-4 mt-30">
-        <div className="flex justify-between items-center mb-6">
-          <h2 className="text-xl text-gray-700">
-            {isLoading
-              ? "Recherche en cours..."
-              : searchResults.length > 0
-              ? `${searchResults.length} résultats trouvés pour "${searchLocation}" (${searchRadius})`
-              : `Aucun résultat pour "${searchLocation}" (${searchRadius})`}
-          </h2>
-          <button className="text-gray-500">
-            <svg
-              className="w-6 h-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"
-              />
-            </svg>
-          </button>
+        <div ref={searchBarRef} className="search-bar-container">
+          {/* Pass the current search parameters to SearchBar */}
+          <SearchBar
+            initialLocation={searchLocation}
+            initialRadius={searchRadius}
+            onSearchResults={handleSearchResults}
+            resetAfterSearch={true}
+          />
         </div>
 
-        {isLoading ? (
-          <div className="flex justify-center my-12">
-            <div className="loader">Chargement...</div>
+        <div className="container mx-auto px-4 mt-30">
+          <div className="flex justify-between items-center mb-6">
+            <h2 className="text-xl text-gray-700">
+              {isLoading
+                ? "Recherche en cours..."
+                : searchResults.length > 0
+                ? `${searchResults.length} résultats trouvés pour "${searchLocation}" (${searchRadius})`
+                : `Aucun résultat pour "${searchLocation}" (${searchRadius})`}
+            </h2>
+            <button className="text-gray-500">
+              <svg
+                className="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"
+                />
+              </svg>
+            </button>
           </div>
-        ) : searchResults.length > 0 ? (
-          <div className="space-y-4">
-            {searchResults.map((center) => (
-              <LocationCard
-                key={center.id}
-                name={center.name}
-                distance={center.distance}
-                location={center.location}
-              />
-            ))}
-          </div>
-        ) : (
-          <div className="text-center py-12">
-            <p className="text-xl text-gray-600 mb-1">
-              Pas de centre disponible pour cette recherche.
-            </p>
-            <p className="text-xl text-gray-600 mb-6">
-              Souhaitez-vous élargir votre rayon de recherche ou ouvrir un
-              centre ?
-            </p>
-            <a href="#" className="text-blue-500 text-xl">
-              Ouvrir un centre
-            </a>
-          </div>
-        )}
+
+          {isLoading ? (
+            <div className="flex justify-center my-12">
+              <div className="loader">Chargement...</div>
+            </div>
+          ) : searchResults.length > 0 ? (
+            <div className="space-y-4">
+              {searchResults.map((center) => (
+                <LocationCard
+                  key={center.id}
+                  name={center.name}
+                  distance={center.distance}
+                  location={center.location}
+                />
+              ))}
+            </div>
+          ) : (
+            <div className="text-center py-12">
+              <p className="text-xl text-gray-600 mb-1">
+                Pas de centre disponible pour cette recherche.
+              </p>
+              <p className="text-xl text-gray-600 mb-6">
+                Souhaitez-vous élargir votre rayon de recherche ou ouvrir un
+                centre ?
+              </p>
+              <a href="#" className="text-blue-500 text-xl">
+                Ouvrir un centre
+              </a>
+            </div>
+          )}
+        </div>
       </div>
-    </div>
+    </Suspense>
   );
 }

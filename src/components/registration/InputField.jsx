@@ -1,4 +1,11 @@
-export default function InputField({ label, name, type = "text", placeholder, onChange }) {
+"use client";
+export default function InputField({
+  label,
+  name,
+  type = "text",
+  placeholder,
+  onChange,
+}) {
   return (
     <div>
       <fieldset>
