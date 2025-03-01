@@ -154,7 +154,7 @@ export default function Navbar() {
               <Link href="#" className="block px-4 py-2 hover:bg-gray-200">
                 Je suis patient
               </Link>
-              <Link href="#" className="block px-4 py-2 hover:bg-gray-200">
+              <Link href="/doctor" className="block px-4 py-2 hover:bg-gray-200">
                 Je suis professionnel de santé
               </Link>
             </div>
