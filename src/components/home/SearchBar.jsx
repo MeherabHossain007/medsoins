@@ -10,6 +10,7 @@ const SearchBar = ({
   initialRadius = "100km",
   onSearchResults = null,
   resetAfterSearch = false,
+  className
 }) => {
   const router = useRouter();
   const [isFocused, setIsFocused] = useState(false);
@@ -194,7 +195,7 @@ const SearchBar = ({
         ref={searchBarRef}
         onSubmit={handleSearch}
         onBlur={handleBlur}
-        className={` lg:${position} lg:absolute  flex flex-col md:inline-flex items-center justify-center gap-4 ${bgColor} px-8 py-6 rounded-lg transition-all duration-300 ease-in-out`}
+        className={` lg:${position} lg:absolute ${className} flex flex-col md:inline-flex items-center justify-center gap-4 ${bgColor} px-8 py-6 rounded-lg transition-all duration-300 ease-in-out`}
       >
         <div className="flex flex-wrap items-center justify-center gap-4">
           <IconInput

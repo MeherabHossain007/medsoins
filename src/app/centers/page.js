@@ -113,10 +113,11 @@ export default function SearchPage() {
             initialRadius={searchRadius}
             onSearchResults={handleSearchResults}
             resetAfterSearch={true}
+            className="lg:top-10"
           />
         </div>
 
-        <div className="container mx-auto px-4 mt-30">
+        <div className="container mx-auto px-4 mt-10 lg:mt-55">
           <div className="flex justify-between items-center mb-6">
             <h2 className="text-xl text-gray-700">
               {isLoading
