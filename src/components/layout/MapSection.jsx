@@ -53,7 +53,7 @@ const MapSection = () => {
   ];
 
   return (
-    <div className="flex flex-col lg:flex-row items-center w-full max-w-screen-xl mx-auto p-8 bg-gray-50">
+    <div className="flex flex-col lg:flex-row items-center w-full mx-auto p-8 lg:px-24 bg-gray-50">
       {/* Left section with text */}
       <div className="w-full lg:w-1/2 pr-0 lg:pr-12 mb-8 lg:mb-0">
         <h1 className="text-5xl font-bold font-space leading-tight text-gray-900 mb-6">

@@ -47,9 +47,9 @@ export default function FAQ() {
   };
 
   return (
-    <div className="pt-18 lg:pt-28">
+    <div className="pt-18 lg:pt-28 overflow-hidden">
       <Banner />
-      <div className="container mx-auto px-5 py-10 lg:py-20">
+      <div className="container mx-auto px-5 py-10 lg:py-20 max-w-screen-xl">
         {/* Title */}
         <h1 className="text-2xl md:text-3xl font-bold font-montserrat">
           Questions Fréquent
@@ -58,8 +58,8 @@ export default function FAQ() {
         {/* Search Section */}
         <div className="mt-5 mb-8">
           <div className="flex items-start gap-2">
-            <FaLightbulb className="text-yellow-500 mt-1" size={40}/>
-            <p className="text-[#757575] text-lg lg:text-3xl font-light lg:max-w-[55ch]">
+            <FaLightbulb className="text-yellow-500 mt-1" size={40} />
+            <p className="text-[#757575] text-lg lg:text-2xl font-light lg:max-w-[55ch]">
               Vous avez une question ? Trouvez ici les réponses les plus
               courantes à propos de nos services
             </p>
@@ -75,11 +75,11 @@ export default function FAQ() {
         </div>
 
         {/* Categories */}
-        <div className="flex flex-wrap gap-x-2 gap-y-4 my-8 justify-between">
+        <div className="flex flex-wrap justify-center items-center gap-4 my-8 mt-20 w-full">
           {categories.map((category, index) => (
             <button
               key={index}
-              className="flex items-center gap-2 px-4 py-2 bg-gray-100 text-gray-500 rounded-full hover:bg-blue-100 hover:text-blue-500 transition duration-300"
+              className="flex items-center gap-4 px-6 py-4 bg-gray-100 text-gray-500 rounded-full hover:bg-blue-100 hover:text-blue-500 transition duration-300"
             >
               {category.icon}
               <span>{category.label}</span>

@@ -29,4 +29,5 @@ body {
   color: var(--foreground);
   background: var(--background);
   font-family: "Montserrat", serif;
+  overflow-x: hidden;
 }
