@@ -11,8 +11,8 @@ export default function Navbar() {
   const [aboutOpen, setAboutOpen] = useState(false);
 
   return (
-    <nav className="bg-white fixed w-full z-50">
-      <div className="bg-white relative z-50 ">
+    <nav className="bg-white fixed w-full z-[5000]">
+      <div className="bg-white relative z-[5000] ">
         <div className="container mx-auto px-6 py-4 flex justify-between items-center">
           {/* Logo */}
           <Link href="/">
