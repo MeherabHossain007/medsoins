@@ -194,7 +194,7 @@ const SearchBar = ({
         ref={searchBarRef}
         onSubmit={handleSearch}
         onBlur={handleBlur}
-        className={`lg:${position} flex flex-col md:inline-flex items-center justify-center gap-4 ${bgColor} px-4 py-2 rounded-lg transition-all duration-300 ease-in-out`}
+        className={` lg:${position} lg:absolute  flex flex-col md:inline-flex items-center justify-center gap-4 ${bgColor} px-4 py-2 rounded-lg transition-all duration-300 ease-in-out`}
       >
         <div className="flex flex-wrap items-center justify-center gap-4">
           <IconInput

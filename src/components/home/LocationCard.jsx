@@ -1,4 +1,3 @@
-"use client";
 import { FaMapMarkerAlt } from "react-icons/fa";
 const LocationCard = ({ name, distance }) => {
   return (

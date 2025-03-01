@@ -1,13 +1,26 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 "use client";
+
 import React, { useState, useEffect, useRef, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import Banner from "@/components/layout/Banner";
 import SearchBar from "@/components/home/SearchBar";
 import LocationCard from "@/components/home/LocationCard";
 
-export default function SearchPage() {
+// Extract search params into a separate component wrapped in Suspense
+const SearchParamsHandler = ({ onParamsChange }) => {
   const searchParams = useSearchParams();
+
+  useEffect(() => {
+    const location = searchParams.get("location") || "";
+    const radius = searchParams.get("radius") || "100km";
+    onParamsChange(location, radius);
+  }, [searchParams]);
+
+  return null;
+};
+
+export default function SearchPage() {
   const [searchResults, setSearchResults] = useState([]);
   const [searchLocation, setSearchLocation] = useState("");
   const [searchRadius, setSearchRadius] = useState("100km");
@@ -54,15 +67,9 @@ export default function SearchPage() {
     },
   ];
 
-  useEffect(() => {
-    // Get search parameters from URL
-    const location = searchParams.get("location") || "";
-    const radius = searchParams.get("radius") || "100km";
-
+  const handleParamsChange = (location, radius) => {
     setSearchLocation(location);
     setSearchRadius(radius);
-
-    // Simulate fetching search results
     setIsLoading(true);
 
     // Filter centers based on search criteria
@@ -72,25 +79,19 @@ export default function SearchPage() {
         center.name.toLowerCase().includes(location.toLowerCase())
     );
 
-    // Simulate API delay
     setTimeout(() => {
       setSearchResults(results);
       setIsLoading(false);
     }, 500);
-  }, [searchParams]);
+  };
 
-  // Handle search from the search bar on this page
   const handleSearchResults = (results, location, radius) => {
-    // Blur any active element to reset focus states
-    if (document.activeElement) {
-      document.activeElement.blur();
-    }
-
+    if (document.activeElement) document.activeElement.blur();
     setSearchResults(results);
     setSearchLocation(location);
     setSearchRadius(radius);
 
-    // Update URL without full page reload
+    // Update URL without reloading
     const url = new URL(window.location);
     url.searchParams.set("location", location);
     url.searchParams.set("radius", radius);
@@ -98,12 +99,15 @@ export default function SearchPage() {
   };
 
   return (
-    <Suspense>
+    <Suspense
+      fallback={
+        <div className="text-center py-12 text-gray-600">Chargement...</div>
+      }
+    >
+      <SearchParamsHandler onParamsChange={handleParamsChange} />
       <div className="pt-18 lg:pt-28">
         <Banner />
-
         <div ref={searchBarRef} className="search-bar-container">
-          {/* Pass the current search parameters to SearchBar */}
           <SearchBar
             initialLocation={searchLocation}
             initialRadius={searchRadius}
@@ -121,21 +125,6 @@ export default function SearchPage() {
                 ? `${searchResults.length} résultats trouvés pour "${searchLocation}" (${searchRadius})`
                 : `Aucun résultat pour "${searchLocation}" (${searchRadius})`}
             </h2>
-            <button className="text-gray-500">
-              <svg
-                className="w-6 h-6"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"
-                />
-              </svg>
-            </button>
           </div>
 
           {isLoading ? (
