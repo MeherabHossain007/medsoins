@@ -17,7 +17,7 @@ export default function Home() {
       <SearchBar />
 
       {/* Hero Section */}
-      <section className="flex flex-col w-full container mx-auto md:flex-row items-center justify-center gap-6 px-4 lg:px-24 mt-10 lg:mt-30">
+      <section className="flex flex-col w-full container mx-auto md:flex-row items-center justify-center gap-10 px-4 lg:px-24 mt-10 lg:mt-30">
         <div className="w-full md:w-1/2">
           <Image
             src="/images/Group11.png"
@@ -40,7 +40,7 @@ export default function Home() {
           <p className="text-sm lg:text-base font-montserrat font-light mt-4 md:mt-7 mb-6">
             Lorem ipsum dolor sit amet, consectetur <br /> adipiscing elit.
           </p>
-          <Button>
+          <Button href={'/registration'} className={'w-fit'}>
             <span className="flex items-center justify-center gap-2">
               Rejoindre une équipe
               <img src="/images/Arrow - Right 2.png" alt="Arrow Right" />
