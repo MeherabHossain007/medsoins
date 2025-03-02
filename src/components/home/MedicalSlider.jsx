@@ -62,97 +62,89 @@ const MedicalFacilityShowcase = () => {
   // Simple React components for icons
 const ChevronLeft = () => (
     <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="22"
-        height="21"
-        viewBox="0 0 22 21"
-        fill="none"
-
-
-
-
+      xmlns="http://www.w3.org/2000/svg"
+      width="22"
+      height="21"
+      viewBox="0 0 22 21"
+      fill="none"
     >
-        <g clipPath="url(#clip0_1_1845)">
-            <g opacity="0.9">
-                <g opacity="0.9">
-                    <path
-                        d="M10.3129 17.1024L3.51713 10.3066L10.3129 3.51091"
-                        stroke="white"
-                        strokeWidth="2.64318"
-                        strokeMiterlimit="20"
-                        strokeLinecap="square"
-                    />
-                </g>
-                <g opacity="0.9">
-                    <path
-                        d="M17.1086 10.3066H4.8759"
-                        stroke="white"
-                        strokeWidth="2.64318"
-                        strokeMiterlimit="20"
-                        strokeLinecap="square"
-                    />
-                </g>
-            </g>
+      <g clipPath="url(#clip0_1_1845)">
+        <g opacity="0.9">
+          <g opacity="0.9">
+            <path
+              d="M10.3129 17.1024L3.51713 10.3066L10.3129 3.51091"
+              stroke="white"
+              strokeWidth="2.64318"
+              strokeMiterlimit="20"
+              strokeLinecap="square"
+            />
+          </g>
+          <g opacity="0.9">
+            <path
+              d="M17.1086 10.3066H4.8759"
+              stroke="white"
+              strokeWidth="2.64318"
+              strokeMiterlimit="20"
+              strokeLinecap="square"
+            />
+          </g>
         </g>
-        <defs>
-            <clipPath id="clip0_1_1845">
-                <rect
-                    width="14.5375"
-                    height="14.5375"
-                    fill="white"
-                    transform="matrix(-0.707107 -0.707107 -0.707107 0.707107 21.5271 10.3071)"
-                />
-            </clipPath>
-        </defs>
+      </g>
+      <defs>
+        <clipPath id="clip0_1_1845">
+          <rect
+            width="14.5375"
+            height="14.5375"
+            fill="white"
+            transform="matrix(-0.707107 -0.707107 -0.707107 0.707107 21.5271 10.3071)"
+          />
+        </clipPath>
+      </defs>
     </svg>
-);
+  );
 
-const ChevronRight = () => (
+  const ChevronRight = () => (
     <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="21"
-        height="21"
-        viewBox="0 0 21 21"
-        fill="none"
-
-
-
-
+      xmlns="http://www.w3.org/2000/svg"
+      width="21"
+      height="21"
+      viewBox="0 0 21 21"
+      fill="none"
     >
-        <g clipPath="url(#clip0_1_1838)">
-            <g opacity="0.9">
-                <g opacity="0.9">
-                    <path
-                        d="M11.6173 17.1021L18.413 10.3064L11.6173 3.51067"
-                        stroke="white"
-                        strokeWidth="2.64318"
-                        strokeMiterlimit="20"
-                        strokeLinecap="square"
-                    />
-                </g>
-                <g opacity="0.9">
-                    <path
-                        d="M4.82159 10.3064H17.0543"
-                        stroke="white"
-                        strokeWidth="2.64318"
-                        strokeMiterlimit="20"
-                        strokeLinecap="square"
-                    />
-                </g>
-            </g>
+      <g clipPath="url(#clip0_1_1838)">
+        <g opacity="0.9">
+          <g opacity="0.9">
+            <path
+              d="M11.6173 17.1021L18.413 10.3064L11.6173 3.51067"
+              stroke="white"
+              strokeWidth="2.64318"
+              strokeMiterlimit="20"
+              strokeLinecap="square"
+            />
+          </g>
+          <g opacity="0.9">
+            <path
+              d="M4.82159 10.3064H17.0543"
+              stroke="white"
+              strokeWidth="2.64318"
+              strokeMiterlimit="20"
+              strokeLinecap="square"
+            />
+          </g>
         </g>
-        <defs>
-            <clipPath id="clip0_1_1838">
-                <rect
-                    width="14.5375"
-                    height="14.5375"
-                    fill="white"
-                    transform="translate(0.403076 10.3069) rotate(-45)"
-                />
-            </clipPath>
-        </defs>
+      </g>
+      <defs>
+        <clipPath id="clip0_1_1838">
+          <rect
+            width="14.5375"
+            height="14.5375"
+            fill="white"
+            transform="translate(0.403076 10.3069) rotate(-45)"
+          />
+        </clipPath>
+      </defs>
     </svg>
-);
+  );
 
   const captionStyle = {
     borderRadius: "12.72px",
@@ -251,7 +243,7 @@ const ChevronRight = () => (
 
       {/* Call to Action Button */}
       <div className="flex justify-center">
-        <Button href={'/registration'}>
+        <Button href={"/registration"}>
           <span className="flex items-center justify-center gap-2">
             Rejoindre une équipe
             <img src="/images/Arrow - Right 2.png" alt="Arrow Right" />
