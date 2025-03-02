@@ -57,9 +57,9 @@ const MapSection = () => {
       {/* Left section with text */}
       <div className="w-full lg:w-1/2 pr-0 lg:pr-12 mb-8 lg:mb-0">
         <h1 className="text-5xl font-bold font-space leading-tight text-gray-900 mb-6">
-          Map Ipsum
+          <span className=" font-light">Map Ipsum</span>
           <br />
-          Dolor Sit Amet,
+          <span className="font-light">Dolor Sit Amet,</span>
           <br />
           Consectetur
         </h1>

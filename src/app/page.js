@@ -123,20 +123,20 @@ export default function Home() {
             </div>
 
             <div className="w-full lg:w-1/2 flex justify-center items-center p-2">
-              <div className="relative px-4 md:px-20 lg:px-auto xl:px-20">
+              <div className="relative px-4 md:px-20 lg:px-10 xl:px-20">
                 <div className="static">
                   <img
                     alt="A doctor sitting at a desk with medical equipment in the background"
-                    className="w-full lg:w-[90%] xl:w-full h-auto mx-auto"
+                    className="w-full lg:w-full h-auto mx-auto"
                     src="/images/Mask Group3.png"
                   />
 
                   {/* Top Left Bubble */}
-                  <div className="absolute top-4 md:top-10 md:right-80 lg:top-7 lg:right-44 xl:top-10 right-33 xl:right-80 bg-secondary text-white p-3 md:p-4 w-60 md:w-[280px] flex items-center space-x-2 md:space-x-4 shadow-lg">
+                  <div className="absolute top-4 md:top-10 md:right-80 lg:top-7 lg:right-50 xl:top-10 right-33 xl:right-80 bg-secondary text-white p-3 md:p-4 w-60 md:w-[280px] lg:w-[250px] xl:w-[280px] flex items-center space-x-2 md:space-x-4 shadow-lg">
                     <div className="bg-blue-300 p-2 flex items-center justify-center rounded-full">
                       <FiUsers className="text-white" />
                     </div>
-                    <p className="text-sm md:text-base font-light font-montserrat">
+                    <p className="text-sm md:text-base lg:text-sm xl:text-base font-light font-montserrat">
                       Lorem Ipsum Dolor Sit Amet, Consectetur Adipiscing Elit.
                     </p>
                   </div>
@@ -146,13 +146,14 @@ export default function Home() {
                     <div className="bg-blue-300 p-2 flex items-center justify-center rounded-full">
                       <FiStar className="text-white" />
                     </div>
-                    <p className="text-sm md:text-base font-light font-montserrat">
+                    <p className="text-sm md:text-base lg:text-sm xl:text-base font-light font-montserrat">
                       Lorem Ipsum Dolor Sit Amet,
                     </p>
                   </div>
                 </div>
               </div>
             </div>
+            
           </div>
         </div>
       </section>
