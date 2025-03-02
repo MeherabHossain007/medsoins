@@ -30,9 +30,9 @@ const Footer = () => {
               Main Categories
             </h3>
             <div className="space-y-1 lg:space-y-3 *:block">
-              <Link href="#">Qui sommes-nous</Link>
-              <Link href="#">Nos centres</Link>
-              <Link href="#">Contacts</Link>
+              <Link href="/about">Qui sommes-nous</Link>
+              <Link href="/centers">Nos centres</Link>
+              <Link href="/doctor">Contacts</Link>
             </div>
           </div>
           <div className="lg:mx-auto">
@@ -40,11 +40,11 @@ const Footer = () => {
               Additional Links
             </h3>
             <div className="space-y-1 lg:space-y-3 *:block">
-              <Link href="#">Trouver mon centre</Link>
-              <Link href="#">Mieux nous connaître</Link>
-              <Link href="#">FAQ</Link>
+              <Link href="/centers">Trouver mon centre</Link>
+              <Link href="/about">Mieux nous connaître</Link>
+              <Link href="/faq">FAQ</Link>
               <Link href="#">Preadmission</Link>
-              <Link href="#">Rejoindre une équipe</Link>
+              <Link href="/registration">Rejoindre une équipe</Link>
             </div>
           </div>
           <div className="lg:ms-auto">

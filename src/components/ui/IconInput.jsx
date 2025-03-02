@@ -13,7 +13,7 @@ function IconInput({
     <div
       className={`p-3 border border-gray-200 rounded-full bg-white ${className}`}
     >
-      <label className="input flex items-center">
+      <label className="w-full input flex items-center">
         {svg}
         <input
           type="text"

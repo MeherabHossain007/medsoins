@@ -195,11 +195,11 @@ const SearchBar = ({
         ref={searchBarRef}
         onSubmit={handleSearch}
         onBlur={handleBlur}
-        className={` lg:${position} lg:absolute ${className} flex flex-col md:inline-flex items-center justify-center gap-4 ${bgColor} px-8 py-6 rounded-lg transition-all duration-300 ease-in-out`}
+        className={`container mx-auto lg:${position} lg:absolute ${className} flex flex-col md:inline-flex items-center justify-center gap-4 ${bgColor} p-5 lg:p-10 rounded-lg transition-all duration-300 ease-in-out`}
       >
-        <div className="flex flex-wrap items-center justify-center gap-4">
+        <div className="w-full flex flex-wrap lg:flex-nowrap items-center justify-center gap-4">
           <IconInput
-            className="w-full md:w-sm lg:w-md xl:w-lg transition-all duration-300"
+            className="flex-1 transition-all duration-300"
             value={searchValue}
             onChange={(e) => {
               const value = e.target.value;

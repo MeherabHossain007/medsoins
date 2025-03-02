@@ -50,7 +50,7 @@ export default function Navbar() {
                 }`}
               >
                 <Link
-                  href="#"
+                  href="/registration"
                   onClick={() => setServiceOpen(!serviceOpen)}
                   className="block rounded-t-2xl px-6 py-4 hover:bg-gray-100 text-nowrap text-center text-[#757575] font-semibold"
                 >
@@ -109,7 +109,9 @@ export default function Navbar() {
 
           {/* Button */}
           <div className="hidden lg:block">
-            <Button href="/registration" className="!py-3">Prendre rendez-vous</Button>
+            <Button href="/registration" className="!py-3">
+              Prendre rendez-vous
+            </Button>
           </div>
 
           {/* Hamburger Icon */}
@@ -135,7 +137,9 @@ export default function Navbar() {
           >
             <button
               className="flex justify-between items-center gap-1 w-full focus:outline-none"
-              onClick={() => setServiceOpen(!serviceOpen)}
+              onClick={() => {
+                setServiceOpen(!serviceOpen);
+              }}
             >
               Services
               <span
@@ -151,10 +155,24 @@ export default function Navbar() {
                 serviceOpen ? "max-h-40 opacity-100" : "max-h-0 opacity-0"
               }`}
             >
-              <Link href="#" className="block px-4 py-2 hover:bg-gray-200">
+              <Link
+                onClick={() => {
+                  setServiceOpen(!serviceOpen);
+                  setIsOpen(!isOpen);
+                }}
+                href="/registration"
+                className="block px-4 py-2 hover:bg-gray-200"
+              >
                 Je suis patient
               </Link>
-              <Link href="/doctor" className="block px-4 py-2 hover:bg-gray-200">
+              <Link
+                onClick={() => {
+                  setServiceOpen(!serviceOpen);
+                  setIsOpen(!isOpen);
+                }}
+                href="/doctor"
+                className="block px-4 py-2 hover:bg-gray-200"
+              >
                 Je suis professionnel de santé
               </Link>
             </div>
@@ -179,10 +197,24 @@ export default function Navbar() {
                 aboutOpen ? "max-h-40 opacity-100" : "max-h-0 opacity-0"
               }`}
             >
-              <Link href="/about" className="block px-4 py-2 hover:bg-gray-200">
+              <Link
+                onClick={() => {
+                  setAboutOpen(!aboutOpen);
+                  setIsOpen(!isOpen);
+                }}
+                href="/about"
+                className="block px-4 py-2 hover:bg-gray-200"
+              >
                 Qui sommes-nous
               </Link>
-              <Link href="/faq" className="block px-4 py-2 hover:bg-gray-200">
+              <Link
+                onClick={() => {
+                  setAboutOpen(!aboutOpen);
+                  setIsOpen(!isOpen);
+                }}
+                href="/faq"
+                className="block px-4 py-2 hover:bg-gray-200"
+              >
                 FAQ
               </Link>
             </div>

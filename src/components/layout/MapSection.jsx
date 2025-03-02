@@ -100,7 +100,7 @@ const MapSection = () => {
       </div>
 
       {/* Right section with map */}
-      <div className="w-full lg:w-2/3 h-96 lg:h-auto rounded-3xl overflow-hidden shadow-xl">
+      <div className="w-full lg:w-2/3 rounded-3xl overflow-hidden shadow-xl">
         <CentersMap
           centers={healthCenters}
           height="250px"
