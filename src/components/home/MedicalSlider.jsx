@@ -184,7 +184,7 @@ const ChevronRight = () => (
           </div>
 
           {/* Navigation arrows - hidden on mobile */}
-          <div className="absolute md:right-0 bottom-0 lg:right-80 xl:right-110 2xl:right-120 p-4 hidden md:flex gap-2 z-10">
+          <div className="absolute md:right-0 bottom-0 lg:right-80 xl:right-113 2xl:right-120 p-4 hidden md:flex gap-2 z-10">
             <button
               onClick={prevSlide}
               className="bg-opacity-70 p-2 rounded-full hover:bg-opacity-100 transition-all"
