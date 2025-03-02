@@ -24,7 +24,7 @@ export default function Navbar() {
           </Link>
 
           {/* Desktop Nav */}
-          <div className="hidden md:flex gap-8 bg-[#F5F5F5] ms-16 px-5 py-2.5 rounded-full">
+          <div className="hidden lg:flex gap-8 bg-[#F5F5F5] ms-16 px-5 py-2.5 rounded-full">
             <Link href="/">Accueil</Link>
             <div className="relative">
               <button
@@ -108,13 +108,13 @@ export default function Navbar() {
           </div>
 
           {/* Button */}
-          <div className="hidden md:block">
+          <div className="hidden lg:block">
             <Button href="/registration" className="!py-3">Prendre rendez-vous</Button>
           </div>
 
           {/* Hamburger Icon */}
           <button
-            className="md:hidden text-gray-800 focus:outline-none"
+            className="lg:hidden text-gray-800 focus:outline-none"
             onClick={() => setIsOpen(!isOpen)}
           >
             {isOpen ? <BsX size={28} /> : <BsList size={28} />}
