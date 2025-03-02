@@ -8,6 +8,7 @@ import BulletCard from "@/components/home/BulletCard";
 import SearchBar from "@/components/home/SearchBar";
 import { FiUsers } from "react-icons/fi";
 import { FiStar } from "react-icons/fi";
+import MedicalFacilityShowcase from "@/components/home/MedicalSlider";
 
 export default function Home() {
   return (
@@ -165,13 +166,7 @@ export default function Home() {
             Lorem Ipsum Dolor <br />
             <span className="font-bold pt-1">SitAmet</span>
           </h1>
-          <Image
-            src={"/images/Group 34.png"}
-            alt="Group 34"
-            width={1920}
-            height={1080}
-            className="object-cover w-full h-auto mt-10 md:mt-20"
-          />
+          <MedicalFacilityShowcase/>
         </div>
       </section>
     </main>
