@@ -1,7 +1,6 @@
 import { Montserrat, Plus_Jakarta_Sans, Space_Grotesk, Poppins } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
-import Map from "@/components/layout/Map";
 import Footer from "@/components/layout/Footer";
 import MapSection from "@/components/layout/MapSection";
 
