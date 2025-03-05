@@ -9,8 +9,10 @@ import SearchBar from "@/components/home/SearchBar";
 import { FiUsers } from "react-icons/fi";
 import { FiStar } from "react-icons/fi";
 import MedicalFacilityShowcase from "@/components/home/MedicalSlider";
+import { useState } from "react";
 
 export default function Home() {
+  const [selectedCard, setSelectedCard] = useState("1");
   return (
     <main className="pt-10 lg:pt-28 overflow-hidden">
       <Banner />
@@ -40,7 +42,7 @@ export default function Home() {
           <p className="text-sm lg:text-base font-montserrat font-light mt-4 md:mt-7 mb-6">
             Lorem ipsum dolor sit amet, consectetur <br /> adipiscing elit.
           </p>
-          <Button href={'/registration'} className={'w-fit'}>
+          <Button href={"/registration"} className={"w-fit"}>
             <span className="flex items-center justify-center gap-2">
               Rejoindre une équipe
               <img src="/images/Arrow - Right 2.png" alt="Arrow Right" />
@@ -89,36 +91,60 @@ export default function Home() {
               </p>
               <div className="grid grid-cols-2 grid-rows-3 gap-4 my-8">
                 <BulletCard
+                  id="1"
                   title={"ipsum dolor sit "}
-                  className={"bg-black w-6"}
                   description={
                     "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent ullamcorper ac quam at aliquam"
                   }
+                  isActive={selectedCard === "1"}
+                  onClick={() =>
+                    setSelectedCard(selectedCard === "1" ? null : "1")
+                  }
                 />
                 <BulletCard
+                  id="2"
                   title={"orem ipsum dolor"}
-                  className={"bg-black opacity-25 w-2"}
-                  titleClass={"text-black opacity-25"}
+                  description={"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent ullamcorper ac quam at aliquam"}
+                  isActive={selectedCard === "2"}
+                  onClick={() =>
+                    setSelectedCard(selectedCard === "2" ? null : "2")
+                  }
                 />
                 <BulletCard
-                  title={"Lorem ipsum dolor"}
-                  className={"bg-black opacity-25 w-2"}
-                  titleClass={"text-black opacity-25"}
+                  id="3"
+                  title={"orem ipsum dolor"}
+                  description={"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent ullamcorper ac quam at aliquam"}
+                  isActive={selectedCard === "3"}
+                  onClick={() =>
+                    setSelectedCard(selectedCard === "3" ? null : "3")
+                  }
                 />
                 <BulletCard
-                  title={"24 orem ipsum dolor sit"}
-                  className={"bg-black opacity-25 w-2"}
-                  titleClass={"text-black opacity-25"}
+                  id="4"
+                  title={"orem ipsum dolor"}
+                  description={"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent ullamcorper ac quam at aliquam"}
+                  isActive={selectedCard === "4"}
+                  onClick={() =>
+                    setSelectedCard(selectedCard === "4" ? null : "4")
+                  }
                 />
                 <BulletCard
-                  title={"Lorem ipsum dolor sit "}
-                  className={"bg-black opacity-25 w-2"}
-                  titleClass={"text-black opacity-25"}
+                  id="5"
+                  title={"orem ipsum dolor"}
+                  description={"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent ullamcorper ac quam at aliquam"}
+                  isActive={selectedCard === "5"}
+                  onClick={() =>
+                    setSelectedCard(selectedCard === "5" ? null : "5")
+                  }
                 />
                 <BulletCard
-                  title={"Lorem ipsum dolor sit "}
-                  className={"bg-black opacity-25 w-2"}
-                  titleClass={"text-black opacity-25"}
+                  id="6"
+                  title={"orem ipsum dolor"}
+                  description={"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent ullamcorper ac quam at aliquam"}
+                  isActive={selectedCard === "6"}
+                  onClick={() =>
+                    setSelectedCard(selectedCard === "6" ? null : "6")
+                  }
                 />
               </div>
             </div>
@@ -154,7 +180,6 @@ export default function Home() {
                 </div>
               </div>
             </div>
-            
           </div>
         </div>
       </section>
@@ -166,7 +191,7 @@ export default function Home() {
             Lorem Ipsum Dolor <br />
             <span className="font-bold pt-1">SitAmet</span>
           </h1>
-          <MedicalFacilityShowcase/>
+          <MedicalFacilityShowcase />
         </div>
       </section>
     </main>
