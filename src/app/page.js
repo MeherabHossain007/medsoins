@@ -19,7 +19,7 @@ export default function Home() {
       <SearchBar />
 
       {/* Hero Section */}
-      <section className="flex flex-col w-full container mx-auto md:flex-row items-center justify-center gap-10 px-4 lg:px-24 mt-10 lg:mt-30">
+      <section className="flex flex-col w-full container mx-auto md:flex-row items-center justify-center gap-10 px-10 lg:px-32 mt-10 lg:mt-30">
         <div className="w-full md:w-1/2">
           <Image
             src="/images/Group11.png"
@@ -52,9 +52,9 @@ export default function Home() {
       </section>
 
       {/* Home Cards Section */}
-      <section className="mt-10 md:mt-30 px-4 md:px-8 lg:px-10 xl:px-24 flex flex-col justify-center items-center gap-10">
+      <section className="mt-10 md:mt-30 px-10 md:px-12 lg:px-16 xl:px-32 flex flex-col justify-center items-center gap-10">
         <div className="flex justify-center items-center">
-          <h1 className="text-3xl md:text-5xl lg:text-6xl font-montserrat tracking-tight text-center font-medium">
+          <h1 className="text-2xl md:text-4xl xl:text-5xl lg:text-6xl font-montserrat tracking-tight text-center font-medium">
             Lorem Ipsum Dolor Sit
           </h1>
         </div>
@@ -72,7 +72,7 @@ export default function Home() {
       </section>
 
       {/* Team Section */}
-      <section className="mt-10 md:mt-30 px-4 md:px-8 lg:px-10 xl:px-24 pt-10 md:pt-20 pb-3 bg-[#FFD3B6] flex flex-col justify-center items-center gap-10">
+      <section className="mt-10 md:mt-30 px-10 md:px-12 lg:px-16 xl:px-32 pt-10 md:pt-20 pb-3 bg-[#FFD3B6] flex flex-col justify-center items-center gap-10">
         <div className="container mx-auto">
           <div className="text-left">
             <h1 className="text-3xl md:text-6xl font-jakarta">
@@ -84,7 +84,7 @@ export default function Home() {
           </div>
           <div className="flex flex-col lg:flex-row mt-8 justify-between">
             <div className="w-full lg:w-1/2">
-              <p className="text-base text-gray-700 font-poppins font-light">
+              <p className="text-sm md:text-base text-gray-700 font-poppins font-light">
                 Lorem Ipsum Dolor Sit Amet, Consectetur Adipisicing Elit. Donec
                 Orci Velit, Varius Sollicitudin Pharetra Eu, Consequat Ac
                 Mauris.
@@ -159,21 +159,21 @@ export default function Home() {
                   />
 
                   {/* Top Left Bubble */}
-                  <div className="absolute top-4 md:top-10 md:right-80 lg:top-7 lg:right-50 xl:top-10 right-33 xl:right-80 bg-secondary text-white p-3 md:p-4 w-60 md:w-[280px] lg:w-[250px] xl:w-[280px] flex items-center space-x-2 md:space-x-4 shadow-lg">
+                  <div className="absolute top-4 md:top-10 md:right-80 lg:top-7 lg:right-45 xl:top-10 right-10 xl:right-70 bg-secondary text-white p-3 md:p-4 w-60 md:w-[280px] lg:w-[250px] xl:w-[280px] flex items-center space-x-2 md:space-x-4 shadow-lg">
                     <div className="bg-blue-300 p-2 flex items-center justify-center rounded-full">
                       <FiUsers className="text-white" />
                     </div>
-                    <p className="text-sm md:text-base lg:text-sm xl:text-base font-light font-montserrat">
+                    <p className="text-xs md:text-base lg:text-sm xl:text-base font-light font-montserrat">
                       Lorem Ipsum Dolor Sit Amet, Consectetur Adipiscing Elit.
                     </p>
                   </div>
 
                   {/* Bottom Right Bubble */}
-                  <div className="absolute bottom-4 md:bottom-10 md:left-70 lg:bottom-7 lg:left-44 xl:bottom-10 left-40 xl:left-70 bg-secondary text-white p-3 md:p-4 flex items-center space-x-2 md:space-x-4 shadow-lg">
+                  <div className="absolute bottom-4 md:bottom-10 md:left-70 lg:bottom-7 lg:left-44 xl:bottom-10 left-30 xl:left-70 bg-secondary text-white p-3 md:p-4 flex items-center space-x-2 md:space-x-4 shadow-lg">
                     <div className="bg-blue-300 p-2 flex items-center justify-center rounded-full">
                       <FiStar className="text-white" />
                     </div>
-                    <p className="text-sm md:text-base lg:text-sm xl:text-base font-light font-montserrat">
+                    <p className="text-xs md:text-base lg:text-sm xl:text-base font-light font-montserrat">
                       Lorem Ipsum Dolor Sit Amet,
                     </p>
                   </div>
@@ -185,7 +185,7 @@ export default function Home() {
       </section>
 
       {/* Final Section */}
-      <section className="container mx-auto mt-10 md:mt-30 px-4 md:px-24">
+      <section className="container mx-auto mt-10 md:mt-30 px-10 md:px-32">
         <div className="flex flex-col justify-center items-center">
           <h1 className="text-3xl md:text-6xl text-center font-jakarta tracking-tight font-medium">
             Lorem Ipsum Dolor <br />

@@ -6,10 +6,10 @@ export default function HomeCard() {
       <div className="h-full flex flex-col justify-between items-start gap-3">
         <Image src="/images/svg/icon1.svg" alt="Home" width={59} height={59} />
         <div>
-          <p className="text-lg md:text-xl font-semibold font-montserrat text-gray-800">
+          <p className="text-lg xl:text-xl font-semibold font-montserrat text-gray-800">
             Lorem ipsum dolor sit amet
           </p>
-          <div className="text-gray-600 font-montserrat font-light text-sm md:text-base">
+          <div className="text-gray-600 font-montserrat font-light text-sm xl:text-base">
             <p>
               onsectetur adipiscing elit. Praesent ullamcorper ac quam at
               aliquam. Pellentesque non sodales lacus

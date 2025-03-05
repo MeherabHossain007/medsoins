@@ -122,7 +122,7 @@ export default function FAQ() {
   return (
     <div className="pt-18 lg:pt-28 overflow-hidden">
       <Banner />
-      <div className="container mx-auto px-5 py-10 lg:py-20 max-w-screen-xl">
+      <div className="container mx-auto px-20 py-20 lg:py-20 max-w-screen-xl">
         {/* Title */}
         <h1 className="text-2xl md:text-3xl font-bold font-montserrat">
           Questions Fréquentes

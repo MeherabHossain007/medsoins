@@ -10,9 +10,9 @@ export default function About() {
     <div className="pt-18 lg:pt-28 overflow-hidden">
       <Banner />
       <div className="bg-gray-50 text-gray-800 min-h-screen">
-        <div className="container mx-auto px-6 sm:px-10 py-8">
+        <div className="container mx-auto px-10 md:px-20 lg:px-24 py-8">
           {/* Main Content Section */}
-          <div className="flex flex-col md:flex-row items-center gap-10 py-8 lg:py-40">
+          <div className="flex flex-col md:flex-row items-center gap-10 py-8 lg:py-20">
             <div className="md:w-1/2 text-center md:text-left">
               <h1 className="text-4xl lg:text-6xl mb-4 font-montserrat">
                 À Propos

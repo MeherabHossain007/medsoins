@@ -8,14 +8,14 @@ export default function BulletCard({ id, title, description, isActive, onClick }
       />
       <div>
         <h2
-          className={`text-lg lg:text-xl xl:text-2xl font-bold font-montserrat transition-all duration-300 ${
+          className={`text-sm md:text-lg lg:text-xl xl:text-2xl font-bold font-montserrat transition-all duration-300 ${
             !isActive ? "text-black opacity-25" : ""
           }`}
         >
           {title}
         </h2>
         {isActive && (
-          <p className="text-sm lg:text-base xl:text-lg text-gray-700 font-poppins font-light mt-2">
+          <p className="text-xs md:text-sm lg:text-base xl:text-lg text-gray-700 font-poppins font-light mt-2">
             {description}
           </p>
         )}

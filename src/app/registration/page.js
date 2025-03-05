@@ -27,7 +27,7 @@ export default function Registration() {
   return (
     <div className="pt-18 lg:pt-28">
       {/* Form Section */}
-      <div className="relative flex items-center justify-center px-5 lg:px-0 py-10 md:py-20">
+      <div className="relative flex items-center justify-center px-10 lg:px-20 py-10 md:py-20">
         <Image
           src="/images/bgf.png"
           alt="Background"
@@ -120,7 +120,7 @@ export default function Registration() {
       </div>
 
       {/* Content Sections */}
-      <div className="max-w-5xl mx-auto py-12 px-4">
+      <div className="max-w-5xl mx-auto py-12 px-20">
         <p className="text-2xl md:text-4xl font-bold py-10 text-center md:text-left">
           Page Rejoindre Une Equipe
         </p>

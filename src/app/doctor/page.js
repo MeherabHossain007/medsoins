@@ -57,7 +57,7 @@ export default function Doctor() {
   return (
     <div className="font-montserrat pt-16 lg:pt-24 h-full">
       <Banner />
-      <div className="container mx-auto px-4 md:px-6 lg:px-8 py-8 md:py-12 lg:py-16">
+      <div className="container mx-auto px-10 md:px-16 lg:px-18 py-8 md:py-12 lg:py-16">
         {/* Main content section */}
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-20 xl:gap-30">
           {/* Left column - Info and Services (wider) */}
