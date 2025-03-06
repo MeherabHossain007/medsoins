@@ -1,0 +1,192 @@
+[
+  {
+    "id": 1,
+    "slug": 1,
+    "name": "Centre Médical Rennes",
+    "type": "healthcare",
+    "latitude": 48.117266,
+    "longitude": -1.677793,
+    "address": "45 Rue de Rennes, 35000 Rennes",
+    "phone": "+33 2 99 45 67 89",
+    "email": "contact@rennes-medical.fr",
+    "hours": "8am - 7pm",
+    "services": [
+      {
+        "title": "Médecine Générale",
+        "description": "Consultations médicales pour les adultes et les enfants."
+      },
+      {
+        "title": "Soins Infirmiers",
+        "description": "Services de soins infirmiers tels que les injections, les pansements et les prélèvements sanguins."
+      },
+      {
+        "title": "Vaccination",
+        "description": "Services de vaccination pour les adultes et les enfants."
+      },
+      {
+        "title": "Suivi de Grossesse",
+        "description": "Suivis réguliers pour les femmes enceintes."
+      }
+    ],
+    "description": "Le Centre Médical Rennes est un établissement de santé moderne offrant une gamme complète de services médicaux et de soins préventifs pour toute la famille. Notre équipe de professionnels dévoués s'engage à fournir des soins de qualité dans un environnement accueillant et réconfortant.",
+    "urgentInfo": "En cas d'urgence en dehors des heures d'ouverture, veuillez contacter le SAMU au 15 ou rendez-vous aux urgences de l'hôpital le plus proche.",
+    "images": [
+      "/images/rectangle-6695.png",
+      "/images/rectangle-6696.png",
+      "/images/rectangle-6697.png",
+      "/images/rectangle-6698.png"
+    ]
+  },
+  {
+    "id": 2,
+    "slug": 2,
+    "name": "Hôpital Universitaire Strasbourg",
+    "type": "hospital",
+    "latitude": 48.584614,
+    "longitude": 7.7507,
+    "address": "1 Place de l'Hôpital, 67000 Strasbourg",
+    "phone": "+33 3 88 11 67 68",
+    "email": "contact@hopital-strasbourg.fr",
+    "hours": "24/7",
+    "services": [
+      {
+        "title": "Urgences",
+        "description": "Service d'urgences ouvert 24h/24 et 7j/7."
+      },
+      {
+        "title": "Chirurgie",
+        "description": "Services chirurgicaux avancés dans diverses spécialités."
+      },
+      {
+        "title": "Maternité",
+        "description": "Service complet de maternité pour les soins prénatals et postnatals."
+      },
+      {
+        "title": "Oncologie",
+        "description": "Traitement spécialisé du cancer et soins de soutien."
+      }
+    ],
+    "description": "L'Hôpital Universitaire de Strasbourg est un établissement de soins tertiaires de pointe offrant des soins spécialisés et des traitements innovants. En tant que centre hospitalier universitaire, nous combinons l'excellence clinique, la recherche de pointe et l'éducation médicale.",
+    "urgentInfo": "Le service des urgences est disponible 24h/24. Pour les urgences vitales, appelez le 15.",
+    "images": [
+      "/images/rectangle-6695.png",
+      "/images/rectangle-6696.png",
+      "/images/rectangle-6697.png",
+      "/images/rectangle-6698.png"
+    ]
+  },
+  {
+    "id": 3,
+    "slug": 3,
+    "name": "Clinique Bordeaux",
+    "type": "clinic",
+    "latitude": 44.837789,
+    "longitude": -0.57918,
+    "address": "112 Cours d'Albret, 33000 Bordeaux",
+    "phone": "+33 5 56 79 56 79",
+    "email": "reception@clinique-bordeaux.fr",
+    "hours": "7am - 9pm",
+    "services": [
+      {
+        "title": "Médecine Esthétique",
+        "description": "Traitements non chirurgicaux pour améliorer l'apparence."
+      },
+      {
+        "title": "Dermatologie",
+        "description": "Diagnostic et traitement des affections cutanées."
+      },
+      {
+        "title": "Nutrition",
+        "description": "Conseils nutritionnels personnalisés et plans alimentaires."
+      },
+      {
+        "title": "Psychologie",
+        "description": "Soutien en santé mentale et thérapies psychologiques."
+      }
+    ],
+    "description": "La Clinique Bordeaux est un établissement médical privé spécialisé dans les soins ambulatoires et les procédures électives. Notre approche se concentre sur des soins personnalisés dans un environnement confortable et luxueux.",
+    "urgentInfo": "Cette clinique ne traite pas les urgences médicales. En cas d'urgence, veuillez appeler le 15 ou vous rendre à l'hôpital le plus proche.",
+    "images": [
+      "/images/rectangle-6695.png",
+      "/images/rectangle-6696.png",
+      "/images/rectangle-6697.png",
+      "/images/rectangle-6698.png"
+    ]
+  },
+  {
+    "id": 4,
+    "slug": 4,
+    "name": "Centre Wellness Alpes",
+    "type": "wellness",
+    "latitude": 45.899247,
+    "longitude": 6.129384,
+    "address": "24 Rue des Alpes, 74000 Annecy",
+    "phone": "+33 4 50 45 67 89",
+    "email": "info@wellness-alpes.fr",
+    "hours": "9am - 8pm",
+    "services": [
+      {
+        "title": "Massage Thérapeutique",
+        "description": "Diverses techniques de massage pour soulager les tensions et favoriser la relaxation."
+      },
+      {
+        "title": "Yoga et Méditation",
+        "description": "Cours de yoga et sessions de méditation guidée pour le bien-être mental."
+      },
+      {
+        "title": "Physiothérapie",
+        "description": "Traitements de rééducation pour les blessures et les conditions chroniques."
+      },
+      {
+        "title": "Nutrition Holistique",
+        "description": "Conseils nutritionnels axés sur une approche globale de la santé."
+      }
+    ],
+    "description": "Le Centre Wellness Alpes est un havre de paix dédié à la santé holistique et au bien-être. Situé dans le magnifique cadre des Alpes françaises, notre centre combine des thérapies traditionnelles et modernes pour restaurer l'équilibre du corps et de l'esprit.",
+    "urgentInfo": "Ce centre n'est pas équipé pour les urgences médicales. Pour les soins médicaux urgents, veuillez contacter les services d'urgence au 15.",
+    "images": [
+      "/images/rectangle-6695.png",
+      "/images/rectangle-6696.png",
+      "/images/rectangle-6697.png",
+      "/images/rectangle-6698.png"
+    ]
+  },
+  {
+    "id": 5,
+    "slug": 5,
+    "name": "Centre de Santé Paris",
+    "type": "healthcare",
+    "latitude": 48.856614,
+    "longitude": 2.3522219,
+    "address": "75 Avenue des Champs-Élysées, 75008 Paris",
+    "phone": "+33 1 45 67 89 10",
+    "email": "contact@sante-paris.fr",
+    "hours": "8am - 8pm",
+    "services": [
+      {
+        "title": "Médecine Générale",
+        "description": "Consultations de médecine générale et examens de routine."
+      },
+      {
+        "title": "Pédiatrie",
+        "description": "Soins médicaux spécialisés pour les nourrissons, les enfants et les adolescents."
+      },
+      {
+        "title": "Gynécologie",
+        "description": "Services de santé reproductive et soins prénatals."
+      },
+      {
+        "title": "Cardiologie",
+        "description": "Diagnostic et gestion des conditions cardiaques."
+      }
+    ],
+    "description": "Le Centre de Santé Paris est un établissement médical multidisciplinaire situé au cœur de Paris. Notre équipe de médecins et de spécialistes s'engage à fournir des soins médicaux complets et accessibles à tous les patients dans un cadre moderne et central.",
+    "urgentInfo": "Pour les urgences médicales en dehors des heures d'ouverture, veuillez contacter le SAMU au 15 ou vous rendre au service d'urgence de l'hôpital le plus proche.",
+    "images": [
+      "/images/rectangle-6695.png",
+      "/images/rectangle-6696.png",
+      "/images/rectangle-6697.png",
+      "/images/rectangle-6698.png"
+    ]
+  }
+]

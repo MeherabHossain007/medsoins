@@ -7,6 +7,22 @@ import Banner from "@/components/layout/Banner";
 import SearchBar from "@/components/home/SearchBar";
 import LocationCard from "@/components/home/LocationCard";
 
+// Calculate distance between two coordinates (haversine formula)
+const calculateDistance = (lat1, lon1, lat2, lon2) => {
+  const R = 6371; // Radius of the earth in km
+  const dLat = ((lat2 - lat1) * Math.PI) / 180;
+  const dLon = ((lon2 - lon1) * Math.PI) / 180;
+  const a =
+    Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+    Math.cos((lat1 * Math.PI) / 180) *
+      Math.cos((lat2 * Math.PI) / 180) *
+      Math.sin(dLon / 2) *
+      Math.sin(dLon / 2);
+  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+  const distance = R * c; // Distance in km
+  return Math.round(distance);
+};
+
 // Extract search params into a separate component wrapped in Suspense
 const SearchParamsHandler = ({ onParamsChange }) => {
   const searchParams = useSearchParams();
@@ -26,63 +42,79 @@ export default function SearchPage() {
   const [searchRadius, setSearchRadius] = useState("100km");
   const [isLoading, setIsLoading] = useState(true);
   const searchBarRef = useRef(null);
+  const [staticCenters, setStaticCenters] = useState([]);
 
-  // Static centers data (would be replaced with API call in production)
-  const staticCenters = [
-    {
-      id: 1,
-      name: "Centre de soins de santé",
-      distance: "100 km",
-      location: "Paris",
-    },
-    {
-      id: 2,
-      name: "Centre médical général",
-      distance: "75 km",
-      location: "Lyon",
-    },
-    {
-      id: 3,
-      name: "Clinique de bien-être",
-      distance: "50 km",
-      location: "Bordeaux",
-    },
-    {
-      id: 4,
-      name: "Hôpital régional",
-      distance: "120 km",
-      location: "Marseille",
-    },
-    {
-      id: 5,
-      name: "Nouveau Centre médical",
-      distance: "60 km",
-      location: "Lille",
-    },
-    {
-      id: 6,
-      name: "Centre de bien-être avancé",
-      distance: "40 km",
-      location: "Nice",
-    },
-  ];
-
-  const handleParamsChange = (location, radius) => {
+  const handleParamsChange = async (location, radius) => {
     setSearchLocation(location);
     setSearchRadius(radius);
     setIsLoading(true);
 
-    // Filter centers based on search criteria
-    const results = staticCenters.filter(
-      (center) =>
-        center.location.toLowerCase().includes(location.toLowerCase()) ||
-        center.name.toLowerCase().includes(location.toLowerCase())
-    );
+    try {
+      const response = await fetch("/data/health-centers.json");
+      const centersData = await response.json();
+      setStaticCenters(centersData);
 
-    setTimeout(() => {
-      setSearchResults(results);
+      // Only perform search if location is not empty
+      if (location.trim()) {
+        // Filter centers based on address or name
+        const filteredResults = centersData.filter(
+          (center) =>
+            center.address.toLowerCase().includes(location.toLowerCase()) ||
+            center.name.toLowerCase().includes(location.toLowerCase())
+        );
+
+        // Add distance calculation
+        // For demonstration, we'll use a fixed user location (Paris)
+        const userLat = 48.856614;
+        const userLon = 2.3522219;
+
+        const resultsWithDistance = filteredResults.map((center) => ({
+          ...center,
+          distance: calculateDistance(
+            userLat,
+            userLon,
+            center.latitude,
+            center.longitude
+          ),
+        }));
+
+        // Filter by radius if needed
+        const radiusValue = parseInt(radius);
+        const resultsInRadius = radiusValue
+          ? resultsWithDistance.filter(
+              (center) => center.distance <= radiusValue
+            )
+          : resultsWithDistance;
+
+        setTimeout(() => {
+          setSearchResults(resultsInRadius);
+          setIsLoading(false);
+        }, 500);
+      } else {
+        // If no location, show all centers with distance
+        const userLat = 48.856614;
+        const userLon = 2.3522219;
+
+        const allWithDistance = centersData.map((center) => ({
+          ...center,
+          distance: calculateDistance(
+            userLat,
+            userLon,
+            center.latitude,
+            center.longitude
+          ),
+        }));
+
+        setTimeout(() => {
+          setSearchResults(allWithDistance);
+          setIsLoading(false);
+        }, 500);
+      }
+    } catch (error) {
+      console.error("Error fetching or processing data:", error);
       setIsLoading(false);
-    }, 500);
+      setSearchResults([]);
+    }
   };
 
   const handleSearchResults = (results, location, radius) => {
@@ -137,9 +169,10 @@ export default function SearchPage() {
               {searchResults.map((center) => (
                 <LocationCard
                   key={center.id}
+                  id={center.id}
                   name={center.name}
                   distance={center.distance}
-                  location={center.location}
+                  location={center.address}
                 />
               ))}
             </div>
@@ -152,7 +185,10 @@ export default function SearchPage() {
                 Souhaitez-vous élargir votre rayon de recherche ou ouvrir un
                 centre ?
               </p>
-              <a href="#" className="text-blue-500 text-xl">
+              <a
+                href="/registration"
+                className="text-blue-500 text-xl hover:underline"
+              >
                 Ouvrir un centre
               </a>
             </div>

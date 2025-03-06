@@ -1,8 +1,8 @@
 import { FaMapMarkerAlt } from "react-icons/fa";
 
-const LocationCard = ({ name, distance }) => {
+const LocationCard = ({ name, distance,id }) => {
   const handleButtonClick = () => {
-    window.location.href = "/doctor";
+    window.location.href = `/doctor/${id}`;
   };
 
   return (

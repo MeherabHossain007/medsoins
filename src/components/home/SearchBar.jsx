@@ -10,7 +10,7 @@ const SearchBar = ({
   initialRadius = "100km",
   onSearchResults = null,
   resetAfterSearch = false,
-  className
+  className,
 }) => {
   const router = useRouter();
   const [isFocused, setIsFocused] = useState(false);
@@ -23,46 +23,7 @@ const SearchBar = ({
   const [isAnimating, setIsAnimating] = useState(false);
   const debounceRef = useRef(null);
   const searchBarRef = useRef(null);
-
-  // Static centers data (would be replaced with API call in production)
-  const staticCenters = [
-    {
-      id: 1,
-      name: "Centre de soins de santé",
-      distance: "100 km",
-      location: "Paris",
-    },
-    {
-      id: 2,
-      name: "Centre médical général",
-      distance: "75 km",
-      location: "Lyon",
-    },
-    {
-      id: 3,
-      name: "Clinique de bien-être",
-      distance: "50 km",
-      location: "Bordeaux",
-    },
-    {
-      id: 4,
-      name: "Hôpital régional",
-      distance: "120 km",
-      location: "Marseille",
-    },
-    {
-      id: 5,
-      name: "Nouveau Centre médical",
-      distance: "60 km",
-      location: "Lille",
-    },
-    {
-      id: 6,
-      name: "Centre de bien-être avancé",
-      distance: "40 km",
-      location: "Nice",
-    },
-  ];
+  const [staticCenters, setStaticCenters] = useState([]);
 
   // Function to reset the search bar state with animation
   const resetSearchBarState = () => {
@@ -80,7 +41,23 @@ const SearchBar = ({
     }, 300);
   };
 
-  // Function to fetch suggestions (simulated with static data)
+  // Function to calculate distance between two coordinates (haversine formula)
+  const calculateDistance = (lat1, lon1, lat2, lon2) => {
+    const R = 6371; // Radius of the earth in km
+    const dLat = ((lat2 - lat1) * Math.PI) / 180;
+    const dLon = ((lon2 - lon1) * Math.PI) / 180;
+    const a =
+      Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+      Math.cos((lat1 * Math.PI) / 180) *
+        Math.cos((lat2 * Math.PI) / 180) *
+        Math.sin(dLon / 2) *
+        Math.sin(dLon / 2);
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    const distance = R * c; // Distance in km
+    return Math.round(distance);
+  };
+
+  // Function to fetch suggestions based on search query
   const fetchSuggestions = (query) => {
     if (debounceRef.current) {
       clearTimeout(debounceRef.current);
@@ -93,18 +70,46 @@ const SearchBar = ({
         return;
       }
 
+      // Filter centers based on address or name containing the query
       const filteredSuggestions = staticCenters.filter(
         (center) =>
-          center.location.toLowerCase().includes(query.toLowerCase()) ||
+          center.address.toLowerCase().includes(query.toLowerCase()) ||
           center.name.toLowerCase().includes(query.toLowerCase())
       );
 
-      setSuggestions(filteredSuggestions);
-      setIsSuggestion(filteredSuggestions.length > 0);
+      // Add calculated distance to each suggestion
+      // For demonstration, we'll use a fixed user location (Paris)
+      // In a real app, you would use the user's current location
+      const userLat = 48.856614;
+      const userLon = 2.3522219;
+
+      const suggestionsWithDistance = filteredSuggestions.map((center) => ({
+        ...center,
+        distance: calculateDistance(
+          userLat,
+          userLon,
+          center.latitude,
+          center.longitude
+        ),
+      }));
+
+      setSuggestions(suggestionsWithDistance);
+      setIsSuggestion(suggestionsWithDistance.length > 0);
     }, 300);
   };
 
   useEffect(() => {
+    const fetchCenters = async () => {
+      try {
+        const response = await fetch("/data/health-centers.json");
+        const centersData = await response.json();
+        setStaticCenters(centersData);
+      } catch (error) {
+        console.error("Error fetching health centers data:", error);
+      }
+    };
+    fetchCenters();
+
     // Initialize search value from props if available
     if (initialLocation) {
       setSearchValue(initialLocation);
@@ -126,7 +131,7 @@ const SearchBar = ({
 
   // Select suggestion handler with animation
   const handleSelectSuggestion = (center) => {
-    setSearchValue(center.location);
+    setSearchValue(center.address);
 
     // Animate the suggestion disappearing
     const fadeOutSuggestions = () => {
@@ -140,12 +145,32 @@ const SearchBar = ({
   const handleSearch = (e) => {
     e.preventDefault();
 
-    // Filter centers based on search criteria
-    const results = staticCenters.filter(
+    if (!searchValue.trim()) {
+      return;
+    }
+
+    // Filter centers based on search criteria (address or name)
+    const filteredCenters = staticCenters.filter(
       (center) =>
-        center.location.toLowerCase().includes(searchValue.toLowerCase()) ||
+        center.address.toLowerCase().includes(searchValue.toLowerCase()) ||
         center.name.toLowerCase().includes(searchValue.toLowerCase())
     );
+
+    // Add calculated distance to each result
+    // For demonstration, we'll use a fixed user location (Paris)
+    // In a real app, you would use the user's current location
+    const userLat = 48.856614;
+    const userLon = 2.3522219;
+
+    const results = filteredCenters.map((center) => ({
+      ...center,
+      distance: calculateDistance(
+        userLat,
+        userLon,
+        center.latitude,
+        center.longitude
+      ),
+    }));
 
     // Reset the search bar state if resetAfterSearch is true
     if (resetAfterSearch) {
@@ -297,6 +322,7 @@ const SearchBar = ({
               >
                 <LocationCard
                   name={center.name}
+                  id={center.id}
                   distance={center.distance}
                   className="suggestion-item cursor-pointer hover:bg-gray-200 transition-colors duration-200"
                 />
