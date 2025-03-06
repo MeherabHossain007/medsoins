@@ -161,14 +161,9 @@ export default function HealthCenter() {
             {/* Map display */}
             <div className="w-full flex justify-center lg:justify-start">
               <CentersMapDisplay
+              centerId={centerData.id}
                 centers={allCenters}
                 height="250px"
-                // If center has coordinates, center map on it, otherwise use France's center
-                initialView={
-                  centerData.latitude && centerData.longitude
-                    ? [centerData.latitude, centerData.longitude]
-                    : [46.603354, 2.888334]
-                }
                 zoom={centerData.latitude ? 12 : 6} // Zoom in if we have specific coordinates
               />
             </div>

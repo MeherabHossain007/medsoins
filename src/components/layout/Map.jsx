@@ -25,16 +25,21 @@ const Popup = dynamic(() => import("react-leaflet").then((mod) => mod.Popup), {
 });
 
 const CentersMap = ({
-  centers = [],
+  dataUrl = "/data/health-centers.json",
+  centerId = null, // Optional ID to filter a specific center
   height = "500px",
   initialView = [46.603354, 1.888334],
   zoom = 5,
 }) => {
   const mapRef = useRef(null);
   const [isClient, setIsClient] = useState(false);
+  const [centers, setCenters] = useState([]);
   const [geoJsonData, setGeoJsonData] = useState(null);
   const [L, setL] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
+  // Load Leaflet
   useEffect(() => {
     setIsClient(true);
     import("leaflet").then((leaflet) => {
@@ -53,6 +58,48 @@ const CentersMap = ({
     });
   }, []);
 
+  // Fetch and process data
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        setLoading(true);
+        const response = await fetch(dataUrl);
+        
+        console.log(dataUrl);
+        console.log("Response:", response); // Debugging
+
+        if (!response.ok) {
+          throw new Error(`Failed to fetch data: ${response.status}`);
+        }
+
+        const data = await response.json();
+        console.log("Fetched Data:", data); // Debugging
+
+        // Ensure centers exist
+        if (!Array.isArray(data) || data.length === 0) {
+          throw new Error("Data is empty or not an array.");
+        }
+
+        const filteredCenters = centerId
+          ? data.filter(
+              (center) =>
+                center.id === parseInt(centerId) || center.id === centerId
+            )
+          : data;
+
+        setCenters(filteredCenters);
+        setLoading(false);
+      } catch (err) {
+        console.error("Error fetching center data:", err);
+        setError(err.message);
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, [dataUrl, centerId]);
+
+  // Generate GeoJSON data
   useEffect(() => {
     if (!centers.length) return;
 
@@ -64,8 +111,10 @@ const CentersMap = ({
         type: center.type || "healthcare",
         address: center.address,
         phone: center.phone,
+        email: center.email,
+        hours: center.hours,
         description: center.description || "",
-        distance: center.distance,
+        urgentInfo: center.urgentInfo || "",
       },
       geometry: {
         type: "Point",
@@ -74,9 +123,18 @@ const CentersMap = ({
     }));
 
     setGeoJsonData({ type: "FeatureCollection", features });
+
+    // If only one center is displayed, center the map on it
+    if (centers.length === 1 && mapRef.current) {
+      mapRef.current.setView(
+        [centers[0].latitude, centers[0].longitude],
+        12 // Zoom closer to single location
+      );
+    }
   }, [centers]);
 
-  if (!isClient || !L) {
+  // Loading state
+  if (!isClient || !L || loading) {
     return (
       <div
         style={{ height, width: "100%" }}
@@ -84,6 +142,63 @@ const CentersMap = ({
       ></div>
     );
   }
+
+  // Error state
+  if (error) {
+    return (
+      <div
+        style={{ height, width: "100%" }}
+        className="bg-red-100 rounded p-4 flex items-center justify-center"
+      >
+        <p className="text-red-600">Error loading map data: {error}</p>
+      </div>
+    );
+  }
+
+  // Empty state
+  if (centers.length === 0) {
+    return (
+      <div
+        style={{ height, width: "100%" }}
+        className="bg-gray-100 rounded p-4 flex items-center justify-center"
+      >
+        <p className="text-gray-600">
+          {centerId
+            ? `No center found with ID: ${centerId}`
+            : "No centers available"}
+        </p>
+      </div>
+    );
+  }
+
+  // Define marker colors based on center type
+  const getMarkerColor = (type) => {
+    const typeColors = {
+      healthcare: "#3B82F6", // blue
+      hospital: "#EF4444", // red
+      clinic: "#10B981", // green
+      wellness: "#8B5CF6", // purple
+    };
+    return typeColors[type] || "#6B7280"; // default gray
+  };
+
+  // Create custom icon function
+  const createCustomIcon = (type) => {
+    if (!L) return null;
+
+    return new L.Icon({
+      iconUrl:
+        "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon.png",
+      iconRetinaUrl:
+        "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon-2x.png",
+      shadowUrl:
+        "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png",
+      iconSize: [25, 41],
+      iconAnchor: [12, 41],
+      popupAnchor: [1, -34],
+      shadowSize: [41, 41],
+    });
+  };
 
   return (
     <div className="w-full" style={{ height }}>
@@ -101,23 +216,69 @@ const CentersMap = ({
         {geoJsonData && (
           <GeoJSON
             data={geoJsonData}
-            style={{ color: "#007bff", fillOpacity: 0.7 }}
+            style={(feature) => ({
+              color: getMarkerColor(feature.properties.type),
+              fillOpacity: 0.7,
+            })}
             onEachFeature={(feature, layer) => {
               if (feature.properties) {
-                const { name, address, phone, distance, description } =
-                  feature.properties;
+                const {
+                  name,
+                  address,
+                  phone,
+                  email,
+                  hours,
+                  description,
+                  urgentInfo,
+                } = feature.properties;
                 layer.bindPopup(`
-                  <div>
+                  <div class="max-w-xs">
                     <h3 class="font-bold text-lg">${name}</h3>
-                    ${address ? `<p>${address}</p>` : ""}
-                    ${phone ? `<p>Tel: ${phone}</p>` : ""}
-                    ${distance ? `<p>Distance: ${distance}</p>` : ""}
-                    ${description ? `<p>${description}</p>` : ""}
+                    ${
+                      address
+                        ? `<p class="text-sm my-1"><strong>Adresse:</strong> ${address}</p>`
+                        : ""
+                    }
+                    ${
+                      phone
+                        ? `<p class="text-sm my-1"><strong>Tel:</strong> ${phone}</p>`
+                        : ""
+                    }
+                    ${
+                      email
+                        ? `<p class="text-sm my-1"><strong>Email:</strong> ${email}</p>`
+                        : ""
+                    }
+                    ${
+                      hours
+                        ? `<p class="text-sm my-1"><strong>Horaires:</strong> ${hours}</p>`
+                        : ""
+                    }
+                    ${
+                      description
+                        ? `<p class="text-sm mt-2">${description.substring(
+                            0,
+                            100
+                          )}${description.length > 100 ? "..." : ""}</p>`
+                        : ""
+                    }
+                    ${
+                      urgentInfo
+                        ? `<p class="text-sm mt-2 text-red-600"><strong>Urgence:</strong> ${urgentInfo.substring(
+                            0,
+                            100
+                          )}${urgentInfo.length > 100 ? "..." : ""}</p>`
+                        : ""
+                    }
                   </div>
                 `);
               }
             }}
-            pointToLayer={(feature, latlng) => L.marker(latlng)}
+            pointToLayer={(feature, latlng) => {
+              return L.marker(latlng, {
+                icon: createCustomIcon(feature.properties.type),
+              });
+            }}
           />
         )}
       </MapContainer>
@@ -125,74 +286,15 @@ const CentersMap = ({
   );
 };
 
-// Example component to display the map with sample data
-const CentersMapDisplay = () => {
-  const sampleCenters = [
-    {
-      id: 1,
-      name: "Centre de soins de santé",
-      type: "healthcare",
-      latitude: 48.856614,
-      longitude: 2.3522219,
-      address: "123 Rue de Paris, 75001 Paris",
-      phone: "+33 1 23 45 67 89",
-      distance: "100 km",
-    },
-    {
-      id: 2,
-      name: "Centre médical général",
-      type: "hospital",
-      latitude: 45.764043,
-      longitude: 4.835659,
-      address: "45 Avenue de Lyon, 69000 Lyon",
-      phone: "+33 4 56 78 90 12",
-      distance: "75 km",
-    },
-    {
-      id: 3,
-      name: "Clinique de bien-être",
-      type: "wellness",
-      latitude: 44.837789,
-      longitude: -0.57918,
-      address: "78 Rue de Bordeaux, 33000 Bordeaux",
-      phone: "+33 5 67 89 01 23",
-      distance: "50 km",
-    },
-    {
-      id: 4,
-      name: "Hôpital régional",
-      type: "hospital",
-      latitude: 43.296482,
-      longitude: 5.36978,
-      address: "90 Boulevard de Marseille, 13000 Marseille",
-      phone: "+33 4 91 23 45 67",
-      distance: "120 km",
-    },
-    {
-      id: 5,
-      name: "Nouveau Centre médical",
-      type: "clinic",
-      latitude: 50.62925,
-      longitude: 3.057256,
-      address: "34 Rue de Lille, 59000 Lille",
-      phone: "+33 3 20 45 67 89",
-      distance: "60 km",
-    },
-    {
-      id: 6,
-      name: "Centre de bien-être avancé",
-      type: "wellness",
-      latitude: 43.7009358,
-      longitude: 7.2683912,
-      address: "56 Avenue de Nice, 06000 Nice",
-      phone: "+33 4 93 56 78 90",
-      distance: "40 km",
-    },
-  ];
-
+// Example component to display the map
+const CentersMapDisplay = ({ centerId }) => {
   return (
     <div className="container mx-auto p-4">
-      <CentersMap centers={sampleCenters} height="300px" />
+      <CentersMap
+        dataUrl="/data/health-centers.json"
+        centerId={centerId}
+        height="300px"
+      />
     </div>
   );
 };
