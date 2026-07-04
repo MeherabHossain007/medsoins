@@ -5,6 +5,7 @@ import Banner from "@/components/layout/Banner";
 import Image from "next/image";
 import ServiceCard from "@/components/doctor/ServiceCard";
 import CentersMapDisplay from "@/components/layout/Map";
+import Link from "next/link";
 
 export default function HealthCenter() {
   const params = useParams();
@@ -120,14 +121,17 @@ export default function HealthCenter() {
             {/* Brand and contact info */}
             <div className="flex flex-col items-start justify-start">
               <div className="flex items-center mb-4">
-                <div className="bg-secondary font-montserrat text-white text-center rounded-lg p-4 border-4 border-black">
-                  <p className="text-sm font-semibold">
-                    PRENEZ RENDEZ VOUS EN LIGNE
+                <Link
+                  href={`/registration?centre=${centerData.id}`}
+                  className="bg-secondary font-montserrat text-white text-center rounded-lg p-4 border-4 border-black hover:bg-opacity-95 transition-all block cursor-pointer"
+                >
+                  <p className="text-xs md:text-sm font-semibold mb-1">
+                    PRENEZ RENDEZ-VOUS EN LIGNE
                   </p>
-                  <h1 className="text-2xl md:text-3xl font-bold ml-4">
+                  <h1 className="text-xl md:text-2xl font-bold">
                     {centerData.name}
                   </h1>
-                </div>
+                </Link>
               </div>
               <div className="text-left mt-2 md:mt-4 font-bold font-montserrat text-neutral-500">
                 <p className="text-base md:text-lg">{centerData.hours}</p>

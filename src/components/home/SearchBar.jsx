@@ -300,7 +300,7 @@ const SearchBar = ({
               Souhaitez-vous ouvrir un centre ?
             </p>
             <a
-              href="/registration"
+              href="/doctor"
               className="text-blue-500 text-xl hover:underline transition-all duration-200"
             >
               Ouvrir un centre

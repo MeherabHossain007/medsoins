@@ -186,7 +186,7 @@ export default function SearchPage() {
                 centre ?
               </p>
               <a
-                href="/registration"
+                href="/doctor"
                 className="text-blue-500 text-xl hover:underline"
               >
                 Ouvrir un centre

@@ -42,7 +42,7 @@ export default function Home() {
           <p className="text-sm lg:text-base font-montserrat font-light mt-4 md:mt-7 mb-6">
             Lorem ipsum dolor sit amet, consectetur <br /> adipiscing elit.
           </p>
-          <Button href={"/registration"} className={"w-fit"}>
+          <Button href={"/doctor"} className={"w-fit"}>
             <span className="flex items-center justify-center gap-2">
               Rejoindre une équipe
               <img src="/images/Arrow - Right 2.png" alt="Arrow Right" />

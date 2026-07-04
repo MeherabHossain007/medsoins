@@ -219,7 +219,7 @@ export default function Navbar() {
               </Link>
             </div>
           </div>
-          <Button className="!py-3">Prendre rendez-vous</Button>
+          <Button href="/registration" className="!py-3">Prendre rendez-vous</Button>
         </div>
       </div>
     </nav>

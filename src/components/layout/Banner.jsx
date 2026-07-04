@@ -72,7 +72,7 @@ const Banner = () => {
 
           {/* Call-to-action Button */}
           <Button
-            href={"/registration"}
+            href={"/doctor"}
             className="opacity-0 animate-fadeIn"
             style={{ animationDelay: "0.9s" }}
           >

@@ -9,7 +9,7 @@ const Footer = () => {
   return (
     <div
       className={`${
-        path === "/registration" ? "bg-[#073A50]" : "bg-primary"
+        (path === "/registration" || path === "/doctor") ? "bg-[#073A50]" : "bg-primary"
       }  text-white`}
     >
       <div className="container mx-auto px-5 py-10 lg:py-20">
@@ -44,7 +44,7 @@ const Footer = () => {
               <Link href="/about">Mieux nous connaître</Link>
               <Link href="/faq">FAQ</Link>
               <Link href="#">Preadmission</Link>
-              <Link href="/registration">Rejoindre une équipe</Link>
+              <Link href="/doctor">Rejoindre une équipe</Link>
             </div>
           </div>
           <div className="lg:ms-auto">
@@ -58,7 +58,7 @@ const Footer = () => {
             </div>
           </div>
         </div>
-        {path === "/registration" && <hr className="border-px border-[#D3D3D326] my-2"/>}
+        {(path === "/registration" || path === "/doctor") && <hr className="border-px border-[#D3D3D326] my-2"/>}
         <p className="mt-4 lg:mt-8 text-center lg:text-left">
           @2024. All rights reserved
         </p>

@@ -1,34 +1,17 @@
 "use client";
-import { useState, useEffect, Suspense } from "react";
+import { useState } from "react";
 import Image from "next/image";
 import InputField from "@/components/registration/InputField";
 import Section from "@/components/registration/Section";
-import { useSearchParams } from "next/navigation";
 
-// Extract search params into a separate component wrapped in Suspense
-const SearchParamsHandler = ({ onCentreChange }) => {
-  const searchParams = useSearchParams();
-
-  useEffect(() => {
-    const centre = searchParams.get("centre");
-    if (centre) {
-      onCentreChange(centre);
-    }
-  }, [searchParams, onCentreChange]);
-
-  return null;
-};
-
-export default function PatientRegistration() {
+export default function DoctorRegistration() {
   const [formData, setFormData] = useState({
     nom: "",
     prenom: "",
     email: "",
     telephone: "",
-    dateNaissance: "",
-    motif: "",
+    specialite: "",
     centre: "",
-    dateHeure: "",
     message: "",
   });
 
@@ -36,27 +19,13 @@ export default function PatientRegistration() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleCentreChange = (centreId) => {
-    const centerMapping = {
-      "1": "rennes",
-      "2": "strasbourg",
-      "3": "bordeaux",
-      "4": "alpes",
-      "5": "paris"
-    };
-    const mappedValue = centerMapping[centreId] || centreId;
-    setFormData((prev) => ({ ...prev, centre: mappedValue }));
-  };
-
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Patient booking form submitted:", formData);
+    console.log("Professional form submitted:", formData);
   };
 
   return (
-    <Suspense fallback={<div className="text-center py-12 text-gray-600">Chargement...</div>}>
-      <SearchParamsHandler onCentreChange={handleCentreChange} />
-      <div className="pt-18 lg:pt-28">
+    <div className="pt-18 lg:pt-28">
       {/* Form Section */}
       <div className="relative flex items-center justify-center px-10 lg:px-20 py-10 md:py-20">
         <Image
@@ -69,7 +38,7 @@ export default function PatientRegistration() {
         <div className="flex flex-col w-full max-w-4xl justify-center items-center">
           <div className="flex items-center justify-center w-full max-w-[90%] md:max-w-[524px] min-h-[34px] rounded-[50px] bg-white bg-opacity-50 backdrop-blur-[5px] mb-4 sm:mb-8 px-2">
             <span className="text-black text-xs md:text-lg font-medium text-center">
-              Prendre rendez-vous en ligne
+              Page Rejoindre une équipe/Ouvrir un centre
             </span>
           </div>
           <div className="relative z-10 bg-white/30 backdrop-blur-sm p-6 md:p-8 rounded-lg shadow-lg w-full">
@@ -102,35 +71,15 @@ export default function PatientRegistration() {
                   onChange={handleChange}
                 />
                 <InputField
-                  label="Date de naissance*"
-                  type="date"
-                  name="dateNaissance"
+                  label="Spécialité pratiquée"
+                  name="specialite"
+                  placeholder="Médecin urgentiste"
                   onChange={handleChange}
                 />
                 <div>
                   <fieldset>
                     <legend className="text-sm font-light">
-                      Motif de consultation*
-                    </legend>
-                    <select
-                      name="motif"
-                      onChange={handleChange}
-                      className="mt-1 block w-full p-3 border bg-white border-gray-300 rounded-md"
-                    >
-                      <option value="">Sélectionnez un motif</option>
-                      <option value="general">Médecine Générale</option>
-                      <option value="pediatrie">Pédiatrie</option>
-                      <option value="infirmier">Soins Infirmiers</option>
-                      <option value="vaccination">Vaccination</option>
-                      <option value="suivi">Suivi de Grossesse</option>
-                      <option value="autre">Autre motif</option>
-                    </select>
-                  </fieldset>
-                </div>
-                <div>
-                  <fieldset>
-                    <legend className="text-sm font-light">
-                      Centre MEDSOIN*
+                      Centre MEDSOIN
                     </legend>
                     <select
                       name="centre"
@@ -138,29 +87,20 @@ export default function PatientRegistration() {
                       className="mt-1 block w-full p-3 border bg-white border-gray-300 rounded-md"
                     >
                       <option value="">Sélectionnez un centre</option>
-                      <option value="rennes">Centre Médical Rennes</option>
-                      <option value="strasbourg">Hôpital Universitaire Strasbourg</option>
-                      <option value="bordeaux">Clinique Bordeaux</option>
-                      <option value="alpes">Centre Wellness Alpes</option>
-                      <option value="paris">Centre de Santé Paris</option>
+                      <option value="centre1">Centre 1</option>
+                      <option value="centre2">Centre 2</option>
                     </select>
                   </fieldset>
                 </div>
-                <InputField
-                  label="Date et heure souhaitées*"
-                  type="datetime-local"
-                  name="dateHeure"
-                  onChange={handleChange}
-                />
               </div>
               <div>
                 <fieldset>
                   <legend className="text-sm font-light">
-                    Message / Remarques (optionnel)
+                    Message (optionnel)
                   </legend>
                   <textarea
                     name="message"
-                    placeholder="Précisez votre demande si nécessaire"
+                    placeholder="Votre message"
                     className="mt-1 block w-full p-2 border bg-white border-gray-300 rounded-md h-32"
                     onChange={handleChange}
                   />
@@ -169,9 +109,9 @@ export default function PatientRegistration() {
               <div className="text-center md:text-end">
                 <button
                   type="submit"
-                  className="bg-secondary text-white font-semibold px-6 py-3 rounded-md w-full md:w-auto hover:bg-secondary-dark transition-all duration-200"
+                  className="bg-secondary text-white font-semibold px-6 py-3 rounded-md w-full md:w-auto"
                 >
-                  Confirmer le rendez-vous
+                  Envoyer
                 </button>
               </div>
             </form>
@@ -182,13 +122,12 @@ export default function PatientRegistration() {
       {/* Content Sections */}
       <div className="max-w-5xl mx-auto py-12 px-20">
         <p className="text-2xl md:text-4xl font-bold py-10 text-center md:text-left">
-          Votre Parcours Patient
+          Page Rejoindre Une Equipe
         </p>
-        <Section title="Comment ça marche ?" />
-        <Section title="Préparer votre visite" />
-        <Section title="Sécurité & Confidentialité" />
+        <Section title="Avantage" />
+        <Section title="Valeur De MEDSOIN" />
+        <Section title="Collaborer Avec Le Réseau" />
       </div>
     </div>
-    </Suspense>
   );
 }

@@ -243,7 +243,7 @@ const ChevronLeft = () => (
 
       {/* Call to Action Button */}
       <div className="flex justify-center">
-        <Button href={"/registration"}>
+        <Button href={"/doctor"}>
           <span className="flex items-center justify-center gap-2">
             Rejoindre une équipe
             <img src="/images/Arrow - Right 2.png" alt="Arrow Right" />
