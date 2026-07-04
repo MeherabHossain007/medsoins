@@ -9,14 +9,16 @@ const Footer = () => {
   return (
     <div
       className={`${
-        (path === "/registration" || path === "/doctor") ? "bg-[#073A50]" : "bg-primary"
-      }  text-white`}
+        path === "/registration" || path === "/doctor"
+          ? "bg-[#073A50] text-white"
+          : "bg-primary text-black"
+      } `}
     >
       <div className="container mx-auto px-5 py-10 lg:py-20">
         <div className="flex flex-wrap justify-between gap-4 lg:grid grid-cols-5">
           <div className="col-span-2 max-lg:mb-8">
             <img
-              className="h-16 lg:h-auto mb-4 lg:mb-8"
+              className="h-16 lg:h-auto mb-4 lg:mb-8 invert"
               src="/images/logo/logo-white.png"
               alt=""
             />
@@ -58,7 +60,9 @@ const Footer = () => {
             </div>
           </div>
         </div>
-        {(path === "/registration" || path === "/doctor") && <hr className="border-px border-[#D3D3D326] my-2"/>}
+        {(path === "/registration" || path === "/doctor") && (
+          <hr className="border-px border-[#D3D3D326] my-2" />
+        )}
         <p className="mt-4 lg:mt-8 text-center lg:text-left">
           @2024. All rights reserved
         </p>
